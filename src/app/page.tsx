@@ -32,7 +32,7 @@ export default function Home() {
       
       {/* ── 1. Hero Section ── */}
       <section className="relative min-h-[90vh] flex items-center pt-10">
-        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start pt-8 lg:pt-20">
           
           {/* Hero Left: Copy */}
           <motion.div 
@@ -41,8 +41,8 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col justify-center max-w-xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium w-fit mb-6">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/20 bg-red-500/5 text-red-500 text-sm font-medium w-fit mb-6">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
               Premium Event Experiences
             </div>
             <h1 className="heading-xl mb-6">
@@ -63,7 +63,7 @@ export default function Home() {
             <div className="mt-12 flex items-center gap-6">
               <div className="flex -space-x-4">
                 {[1,2,3,4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-[#06060f] overflow-hidden">
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
                     <img src={`https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80&img=${i}`} alt="user" className="w-full h-full object-cover" />
                   </div>
                 ))}
@@ -82,10 +82,10 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }} 
             animate={{ opacity: 1, scale: 1 }} 
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="w-full max-w-lg mx-auto lg:ml-auto"
+            className="w-full max-w-lg mx-auto lg:mt-0 lg:ml-auto"
           >
-            <GlassCard padding="lg" className="border-t-white/20">
-              <h3 className="text-2xl font-bold text-white mb-6">Find Your Event</h3>
+            <GlassCard padding="lg" className="border-t-black/5 shadow-2xl">
+              <h3 className="text-2xl font-bold text-slate-800 mb-6">Find Your Event</h3>
               <form className="flex flex-col gap-5">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Event Type</label>
@@ -139,7 +139,7 @@ export default function Home() {
               { value: '4.9/5', label: 'Average Rating' }
             ].map((stat, i) => (
               <div key={i} className="flex flex-col items-center justify-center text-center px-4">
-                <h4 className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</h4>
+                <h4 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">{stat.value}</h4>
                 <span className="text-sm text-slate-400 uppercase tracking-widest">{stat.label}</span>
               </div>
             ))}
@@ -179,14 +179,14 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {CATEGORIES.map(category => (
               <Link key={category.id} href={`/events?category=${category.id}`} className="group no-underline">
-                <GlassCard padding="lg" className="flex flex-col items-center justify-center text-center h-full hover:border-[#a855f7]/40">
+                <GlassCard padding="lg" className="flex flex-col items-center justify-center text-center h-full hover:border-red-500/20">
                   <div 
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-4 transition-transform group-hover:scale-110 group-hover:rotate-3 shadow-lg"
-                    style={{ background: `linear-gradient(135deg, ${category.color}40, ${category.color}10)`, border: `1px solid ${category.color}40` }}
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-4 transition-transform group-hover:scale-110 group-hover:rotate-3 shadow-sm bg-white"
+                    style={{ border: `1px solid ${category.color}40`, color: category.color }}
                   >
                     {category.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-white group-hover:text-purple-300 transition-colors">{category.name}</h3>
+                  <h3 className="text-xl font-semibold text-slate-800 group-hover:text-red-500 transition-colors">{category.name}</h3>
                 </GlassCard>
               </Link>
             ))}
@@ -204,7 +204,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-4 gap-8 relative">
             {/* Connecting Line (Desktop) */}
-            <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-purple-500/30 auto transparent z-[-1]" />
+            <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-red-500/10 auto transparent z-[-1]" />
             
             {[
               { num: '01', title: 'Discover', desc: 'Browse our curated list of premium events and coordinators based on your preferences.' },
@@ -213,13 +213,13 @@ export default function Home() {
               { num: '04', title: 'Experience', desc: 'Attend your event with a digital QR ticket and enjoy a flawless experience.' }
             ].map((step, i) => (
               <div key={i} className="flex flex-col items-center text-center relative">
-                <div className="w-[120px] h-[120px] rounded-full glass flex items-center justify-center mb-6 relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-slate-500 group-hover:from-purple-300 group-hover:to-cyan-200 transition-colors">
+                <div className="w-[120px] h-[120px] rounded-full glass flex items-center justify-center mb-6 relative overflow-hidden group bg-white shadow-sm border border-slate-100">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-red-500/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-slate-800 to-slate-400 group-hover:from-red-500 group-hover:to-red-400 transition-colors">
                     {step.num}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                <h3 className="text-xl font-bold text-slate-800 mb-3">{step.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
               </div>
             ))}
@@ -236,17 +236,17 @@ export default function Home() {
 
         {/* Carousel */}
         <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-          <div className="flex animate-marquee items-center justify-center md:justify-start [&_li]:mx-4 [&_img]:max-w-none hover:[animation-play-state:paused]">
+          <div className="flex animate-marquee items-center justify-center md:justify-start [&_li]:mx-4 [&_img]:max-w-none hover:[animation-play-state:paused] py-4">
             {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-              <GlassCard key={i} padding="md" className="w-[400px] flex-shrink-0 mx-4 border-l-purple-500/50 border-l-[3px]">
+              <GlassCard key={i} padding="md" className="w-[400px] flex-shrink-0 mx-4 border-l-red-500/50 border-l-[3px] bg-white">
                 <div className="flex gap-1 text-gold mb-4">
                   {[...Array(t.rating)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
                 </div>
                 <p className="text-slate-200 text-[15px] italic mb-6">"{t.text}"</p>
                 <div className="flex items-center gap-4">
-                  <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover border border-white/20" />
+                  <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover border border-slate-200" />
                   <div>
-                    <h4 className="font-bold text-white text-sm">{t.name}</h4>
+                    <h4 className="font-bold text-slate-800 text-sm">{t.name}</h4>
                     <p className="text-xs text-slate-400">{t.role} • {t.event}</p>
                   </div>
                 </div>
@@ -259,10 +259,10 @@ export default function Home() {
       {/* ── 7. CTA Section ── */}
       <section className="section relative z-10">
         <div className="container">
-          <GlassPanel className="relative overflow-hidden p-12 md:p-20 text-center rounded-[40px] border-purple-500/30">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/40 via-cyan-900/20 to-purple-900/40" />
+          <GlassPanel className="relative overflow-hidden p-12 md:p-20 text-center rounded-[40px] border-red-500/10 shadow-xl bg-white">
+            <div className="absolute inset-0 bg-gradient-to-r from-red-50 via-white to-red-50" />
             <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="heading-lg mb-6 text-white">Ready to Elevate Your Next Event?</h2>
+              <h2 className="heading-lg mb-6 text-slate-900">Ready to Elevate Your Next Event?</h2>
               <p className="text-xl text-slate-300 mb-10">
                 Join thousands of users who have transformed their event ideas into spectacular realities. Connect with coordinators today.
               </p>

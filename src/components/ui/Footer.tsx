@@ -4,10 +4,8 @@ import { Calendar, Camera, MessageCircle, Briefcase, Mail } from 'lucide-react';
 export default function Footer() {
   return (
     <footer style={{
-      background: 'rgba(6, 6, 15, 0.6)',
-      backdropFilter: 'blur(40px)',
-      WebkitBackdropFilter: 'blur(40px)',
-      borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+      background: '#ffffff',
+      borderTop: '1px solid rgba(0, 0, 0, 0.05)',
       paddingTop: '80px',
       paddingBottom: '40px',
       marginTop: 'auto'
@@ -22,22 +20,11 @@ export default function Footer() {
           {/* Brand Info */}
           <div>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: '20px' }}>
-              <div style={{
-                width: 36, height: 36,
-                borderRadius: 10,
-                background: 'linear-gradient(135deg, #7c3aed, #22d3ee)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 0 16px rgba(124,58,237,0.4)',
-              }}>
-                <Calendar size={18} color="white" />
-              </div>
-              <span style={{
-                fontSize: 20, fontWeight: 700,
-                background: 'linear-gradient(135deg, #a78bfa, #22d3ee)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-              }}>
-                Uventere
-              </span>
+              <img 
+                src="/uventere-logo.png" 
+                alt="Uventere Logo" 
+                style={{ height: 36, width: 'auto', objectFit: 'contain' }} 
+              />
             </Link>
             <p style={{ color: 'var(--color-text-muted)', fontSize: '15px', marginBottom: '24px', maxWidth: '280px' }}>
               Premium event coordination and booking platform. Turn your vision into unforgettable experiences.
@@ -57,7 +44,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 style={{ color: 'white', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Quick Links</h4>
+            <h4 style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Quick Links</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <Link href="/events" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Events View</Link>
               <Link href="/categories" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Categories</Link>
@@ -68,7 +55,7 @@ export default function Footer() {
 
           {/* Legal & Support */}
           <div>
-            <h4 style={{ color: 'white', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Support</h4>
+            <h4 style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Support</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <Link href="/contact" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Contact Us</Link>
               <Link href="/faq" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">FAQ</Link>
@@ -79,7 +66,7 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 style={{ color: 'white', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Newsletter</h4>
+            <h4 style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Newsletter</h4>
             <p style={{ color: 'var(--color-text-muted)', fontSize: '14px', marginBottom: '16px' }}>
               Get updates on premium events straight to your inbox.
             </p>
@@ -103,7 +90,7 @@ export default function Footer() {
 
         <div className="divider" style={{ marginBottom: '24px' }} />
         
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <p style={{ color: 'var(--color-text-muted)', fontSize: '14px' }}>
             © {new Date().getFullYear()} Uventere. All rights reserved.
           </p>

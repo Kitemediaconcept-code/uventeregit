@@ -65,34 +65,24 @@ export default function Navbar() {
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 999,
           transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
           background: scrolled
-            ? 'rgba(6,6,15,0.85)'
+            ? 'rgba(255,255,255,0.95)'
             : 'transparent',
           backdropFilter: scrolled ? 'blur(24px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(0,0,0,0.05)' : 'none',
           padding: scrolled ? '12px 0' : '20px 0',
+          boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.03)' : 'none',
         }}
       >
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
           {/* ── Logo ── */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <div style={{
-              width: 40, height: 40,
-              borderRadius: 12,
-              background: 'linear-gradient(135deg, #7c3aed, #22d3ee)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 0 20px rgba(124,58,237,0.5)',
-            }}>
-              <Calendar size={20} color="white" />
-            </div>
-            <span style={{
-              fontSize: 22, fontWeight: 700,
-              background: 'linear-gradient(135deg, #a78bfa, #22d3ee)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-            }}>
-              Uventere
-            </span>
+            <img 
+              src="/uventere-logo.png" 
+              alt="Uventere Logo" 
+              style={{ height: 36, width: 'auto', objectFit: 'contain' }} 
+            />
           </Link>
 
           {/* ── Center Nav Links (desktop) ── */}
@@ -116,8 +106,8 @@ export default function Navbar() {
             <button
               onClick={() => setSearchOpen(true)}
               style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                background: 'rgba(0,0,0,0.03)',
+                border: '1px solid rgba(0,0,0,0.05)',
                 borderRadius: 12,
                 width: 40, height: 40,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -125,13 +115,13 @@ export default function Navbar() {
                 transition: 'all 0.3s',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(124,58,237,0.2)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(124,58,237,0.4)';
-                (e.currentTarget as HTMLElement).style.color = '#a78bfa';
+                (e.currentTarget as HTMLElement).style.background = 'rgba(255,49,49,0.08)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,49,49,0.2)';
+                (e.currentTarget as HTMLElement).style.color = 'var(--color-primary)';
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.06)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.08)';
+                (e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.03)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,0,0,0.05)';
                 (e.currentTarget as HTMLElement).style.color = 'var(--color-text-secondary)';
               }}
               aria-label="Search"
@@ -146,16 +136,16 @@ export default function Navbar() {
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   style={{
                     display: 'flex', alignItems: 'center', gap: 8,
-                    background: 'rgba(124,58,237,0.15)',
-                    border: '1px solid rgba(124,58,237,0.3)',
+                    background: 'rgba(255,49,49,0.05)',
+                    border: '1px solid rgba(255,49,49,0.1)',
                     borderRadius: 40, padding: '8px 16px 8px 8px',
-                    cursor: 'pointer', color: '#a78bfa',
+                    cursor: 'pointer', color: 'var(--color-primary)',
                     transition: 'all 0.3s',
                   }}
                 >
                   <div style={{
                     width: 28, height: 28, borderRadius: 14,
-                    background: 'linear-gradient(135deg, #7c3aed, #22d3ee)',
+                    background: 'var(--color-primary)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: 12, fontWeight: 700, color: 'white',
                   }}>
@@ -187,8 +177,8 @@ export default function Navbar() {
                           transition: 'all 0.2s',
                         }}
                         onMouseEnter={e => {
-                          (e.currentTarget as HTMLElement).style.background = 'rgba(124,58,237,0.15)';
-                          (e.currentTarget as HTMLElement).style.color = '#a78bfa';
+                          (e.currentTarget as HTMLElement).style.background = 'rgba(255,49,49,0.05)';
+                          (e.currentTarget as HTMLElement).style.color = 'var(--color-primary)';
                         }}
                         onMouseLeave={e => {
                           (e.currentTarget as HTMLElement).style.background = 'transparent';
@@ -253,7 +243,7 @@ export default function Navbar() {
       <div
         style={{
           position: 'fixed', inset: 0, zIndex: 997,
-          background: 'rgba(6,6,15,0.97)',
+          background: 'rgba(255,255,255,0.98)',
           backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
           display: 'flex', flexDirection: 'column',
           transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
@@ -266,8 +256,8 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(false)}
             style={{
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'rgba(0,0,0,0.03)',
+              border: '1px solid rgba(0,0,0,0.05)',
               borderRadius: 12, width: 44, height: 44,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               cursor: 'pointer', color: 'var(--color-text-primary)',
@@ -285,12 +275,12 @@ export default function Navbar() {
               style={{
                 display: 'block', padding: '18px 20px',
                 fontSize: 28, fontWeight: 700,
-                color: pathname === link.href ? '#a78bfa' : 'var(--color-text-primary)',
+                color: pathname === link.href ? 'var(--color-primary)' : 'var(--color-text-primary)',
                 textDecoration: 'none', borderRadius: 20,
                 transition: 'all 0.2s',
                 animationDelay: `${i * 0.05}s`,
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(124,58,237,0.1)'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,49,49,0.05)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
             >
               {link.label}
@@ -321,14 +311,14 @@ export default function Navbar() {
         <div
           style={{
             position: 'fixed', inset: 0, zIndex: 1001,
-            background: 'rgba(6,6,15,0.9)',
+            background: 'rgba(255,255,255,0.95)',
             backdropFilter: 'blur(20px)',
             display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
             paddingTop: 120,
           }}
           onClick={e => { if (e.target === e.currentTarget) setSearchOpen(false); }}
         >
-          <div className="glass" style={{ width: '100%', maxWidth: 600, margin: '0 24px', padding: '8px', borderRadius: 40 }}>
+          <div className="glass-card" style={{ width: '100%', maxWidth: 600, margin: '0 24px', padding: '8px', borderRadius: 40 }}>
             <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 20px' }}>
               <Search size={20} color="var(--color-text-muted)" />
               <input
@@ -338,7 +328,7 @@ export default function Navbar() {
                 placeholder="Search events, venues, cities..."
                 style={{
                   flex: 1, background: 'none', border: 'none', outline: 'none',
-                  color: 'white', fontSize: 18, fontFamily: 'var(--font-sf)',
+                  color: 'var(--color-text-primary)', fontSize: 18, fontFamily: 'var(--font-sf)',
                 }}
               />
               <button type="button" onClick={() => setSearchOpen(false)}
