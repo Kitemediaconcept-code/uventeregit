@@ -83,8 +83,8 @@ export default function Navbar() {
           backdropFilter: scrolled ? 'blur(24px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'none',
           borderBottom: scrolled ? '1px solid rgba(0,0,0,0.05)' : 'none',
-          padding: scrolled ? '12px 0' : '20px 0',
-          boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.03)' : 'none',
+          padding: scrolled ? '16px 0' : '28px 0',
+          boxShadow: scrolled ? '0 10px 40px rgba(0,0,0,0.04)' : 'none',
         }}
       >
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -92,9 +92,9 @@ export default function Navbar() {
           {/* ── Logo ── */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
             <img 
-              src="/uventere-logo.png" 
+              src="/logo.png" 
               alt="Uventere Logo" 
-              style={{ height: 36, width: 'auto', objectFit: 'contain' }} 
+              style={{ height: 42, width: 'auto', objectFit: 'contain' }} 
             />
           </Link>
 

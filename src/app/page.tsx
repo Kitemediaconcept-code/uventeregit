@@ -67,15 +67,15 @@ export default function Home() {
     <div className="flex flex-col gap-0 w-full mb-20 overflow-hidden">
       
       {/* ── 1. Hero Section ── */}
-      <section className="relative min-h-[95vh] flex items-center pt-24 pb-16">
-        <div className="container relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <section className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden">
+        <div className="container relative z-10 grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
           
           {/* Hero Left: Copy */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col justify-center max-w-xl"
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="flex flex-col justify-center max-w-2xl"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/20 bg-red-500/5 text-red-500 text-sm font-medium w-fit mb-8">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
@@ -96,19 +96,19 @@ export default function Home() {
               </Link>
             </div>
             
-            <div className="mt-14 flex items-center gap-6">
+            <div className="mt-16 flex items-center gap-6">
               <div className="flex -space-x-4">
                 {[1,2,3,4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm">
+                  <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden shadow-md">
                     <img src={`https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80&img=${i}`} alt="user" className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
               <div className="text-sm">
                 <div className="flex items-center text-gold mb-1">
-                  {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="currentColor" />)}
+                  {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
                 </div>
-                <span className="text-slate-500">Trusted by <span className="text-slate-900 font-bold">10k+</span> users</span>
+                <span className="text-slate-500 font-medium">Trusted by <span className="text-slate-900 font-extrabold">10k+</span> users worldwide</span>
               </div>
             </div>
           </motion.div>
@@ -165,9 +165,9 @@ export default function Home() {
       </section>
 
       {/* ── 2. Stats Section ── */}
-      <section className="section-sm relative z-10 border-y border-white/5 bg-white/[0.02]">
+      <section className="section-sm relative z-10 border-y border-slate-100 bg-slate-50">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
               { value: '500+', label: 'Events Hosted' },
               { value: '50K+', label: 'Happy Attendees' },
@@ -175,8 +175,8 @@ export default function Home() {
               { value: '4.9/5', label: 'Average Rating' }
             ].map((stat, i) => (
               <div key={i} className="flex flex-col items-center justify-center text-center px-4">
-                <h4 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">{stat.value}</h4>
-                <span className="text-sm text-slate-400 uppercase tracking-widest">{stat.label}</span>
+                <h4 className="text-4xl md:text-5xl font-black text-slate-900 mb-3">{stat.value}</h4>
+                <span className="text-xs text-slate-500 uppercase tracking-[0.2em] font-bold">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -186,14 +186,9 @@ export default function Home() {
       {/* ── 3. Featured Events ── */}
       <section className="section relative z-10">
         <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div className="max-w-2xl">
-              <h2 className="heading-lg mb-4">Featured <span className="text-gradient">Events</span></h2>
-              <p className="text-slate-300 text-lg">Don't miss out on the most anticipated events of the year. Curated just for you.</p>
-            </div>
-            <Link href="/events" className="btn-outline whitespace-nowrap">
-              View All Events
-            </Link>
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="heading-lg mb-6 text-slate-900">Featured <span className="text-gradient">Events</span></h2>
+            <p className="text-slate-600 text-xl leading-relaxed">Don't miss out on the most anticipated events of the year. Curated just for you.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -205,11 +200,11 @@ export default function Home() {
       </section>
 
       {/* ── 4. Categories ── */}
-      <section className="section relative z-10 bg-slate-50">
+      <section className="section relative z-10 bg-white">
         <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="heading-lg mb-4">Browse by <span className="text-gradient">Category</span></h2>
-            <p className="text-slate-300 text-lg">Whatever you're looking for, we've got the perfect event type ready to explore.</p>
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="heading-lg mb-6 text-slate-900">Browse by <span className="text-gradient">Category</span></h2>
+            <p className="text-slate-600 text-xl leading-relaxed">Whatever you're looking for, we've got the perfect event type ready to explore.</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
@@ -231,11 +226,11 @@ export default function Home() {
       </section>
 
       {/* ── 5. How It Works ── */}
-      <section className="section relative z-10">
+      <section className="section relative z-10 bg-slate-50">
         <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="heading-lg mb-4">How It <span className="text-gradient">Works</span></h2>
-            <p className="text-slate-300 text-lg">Your journey to the perfect event is just four simple steps away.</p>
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="heading-lg mb-6 text-slate-900">How It <span className="text-gradient">Works</span></h2>
+            <p className="text-slate-600 text-xl leading-relaxed">Your journey to the perfect event is just four simple steps away.</p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 relative">
@@ -264,10 +259,12 @@ export default function Home() {
       </section>
 
       {/* ── 6. Testimonials ── */}
-      <section className="section relative z-10 border-t border-white/5 overflow-hidden">
-        <div className="container mb-12">
-          <h2 className="heading-lg mb-4 text-center">Impact <span className="text-gradient">Stories</span></h2>
-          <p className="text-slate-300 text-lg text-center max-w-2xl mx-auto">Real experiences, real results. Hear from those we've transformed.</p>
+      <section className="section relative z-10 border-t border-slate-100 overflow-hidden bg-white">
+        <div className="container mb-20">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="heading-lg mb-6 text-slate-900">Impact <span className="text-gradient">Stories</span></h2>
+            <p className="text-slate-600 text-xl leading-relaxed">Real experiences, real results. Hear from those we've transformed.</p>
+          </div>
         </div>
 
         {/* Carousel */}
