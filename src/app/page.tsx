@@ -118,9 +118,9 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }} 
             animate={{ opacity: 1, scale: 1 }} 
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="w-full max-w-lg mx-auto lg:mt-0 lg:ml-auto"
+            className="w-full"
           >
-            <GlassCard padding="lg" className="border border-slate-100 shadow-2xl bg-white">
+            <div className="bg-white rounded-[40px] border border-slate-100 shadow-2xl p-10">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">Find Your Event</h3>
               <form className="flex flex-col gap-5">
                 <div>
@@ -159,7 +159,7 @@ export default function Home() {
                   Search Now
                 </Button>
               </form>
-            </GlassCard>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -188,10 +188,10 @@ export default function Home() {
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="heading-lg mb-6 text-slate-900">Featured <span className="text-gradient">Events</span></h2>
-            <p className="text-slate-600 text-xl leading-relaxed">Don't miss out on the most anticipated events of the year. Curated just for you.</p>
+            <p className="text-slate-600 text-xl leading-relaxed text-center">Don't miss out on the most anticipated events of the year. Curated just for you.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {displayEvents.map((event, idx) => (
               <EventCard key={event.id || idx} event={event} />
             ))}
