@@ -64,100 +64,96 @@ export default function Home() {
   const displayEvents = dbEvents.length > 0 ? dbEvents.slice(0, 4) : featuredEvents;
 
   return (
-    <div className="flex flex-col gap-0 w-full mb-20 overflow-hidden">
+    <div className="flex flex-col gap-0 w-full mb-20 overflow-hidden relative">
+      {/* ── Aurora Background Orbs ── */}
+      <div className="orb orb-purple w-[600px] h-[600px] -top-[200px] -left-[100px] opacity-20" />
+      <div className="orb orb-cyan w-[500px] h-[500px] top-[10%] -right-[100px] opacity-10" />
+      <div className="orb orb-pink w-[700px] h-[700px] top-[40%] -left-[200px] opacity-10" />
       
       {/* ── 1. Hero Section ── */}
-      <section className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden">
-        <div className="container relative z-10 grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+      <section className="relative min-h-[90vh] flex items-center pt-40 pb-32">
+        <div className="container relative z-10 flex flex-col items-center text-center">
           
-          {/* Hero Left: Copy */}
+          {/* Hero Content */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
+            initial={{ opacity: 0, y: 30 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 1, ease: "easeOut" }}
-            className="flex flex-col justify-center max-w-2xl"
+            className="flex flex-col items-center max-w-4xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/20 bg-red-500/5 text-red-500 text-sm font-medium w-fit mb-8">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-indigo-500/20 bg-indigo-500/5 text-indigo-600 text-sm font-medium mb-10 tracking-wide uppercase text-[11px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse" />
               Premium Event Experiences
             </div>
-            <h1 className="heading-xl mb-6">
-              Plan Your <span className="text-gradient">Perfect</span> Event Effortlessly
+            <h1 className="heading-xl mb-8 !leading-[1.1] tracking-tight">
+              Plan Your <span className="text-indigo-600">Perfect</span> Event <br className="hidden md:block" /> with Absolute Simplicity
             </h1>
-            <p className="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed">
+            <p className="text-xl text-slate-500 mb-12 max-w-2xl leading-relaxed">
               Discover, book, and manage exclusive events with top coordinators. Turn your vision into an unforgettable reality with our premium platform.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/events" className="btn-primary">
+            
+            <div className="flex flex-wrap items-center justify-center gap-6 mb-16">
+              <Link href="/events" className="btn-primary !px-8 !py-4 shadow-xl shadow-indigo-200">
                 Explore Events <ChevronRight size={18} />
               </Link>
-              <Link href="/custom-event" className="btn-glass">
+              <Link href="/custom-event" className="btn-glass !px-8 !py-4">
                 Request Custom Event
               </Link>
             </div>
             
-            <div className="mt-16 flex items-center gap-6">
+            <div className="flex items-center gap-6 mb-24">
               <div className="flex -space-x-4">
                 {[1,2,3,4].map((i) => (
-                  <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden shadow-md">
+                  <div key={i} className="w-11 h-11 rounded-full border-4 border-white overflow-hidden shadow-lg">
                     <img src={`https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80&img=${i}`} alt="user" className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
-              <div className="text-sm">
+              <div className="text-sm text-left">
                 <div className="flex items-center text-gold mb-1">
-                  {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
+                  {[1,2,3,4,5].map(i => <Star key={i} size={15} fill="currentColor" />)}
                 </div>
-                <span className="text-slate-500 font-medium">Trusted by <span className="text-slate-900 font-extrabold">10k+</span> users worldwide</span>
+                <span className="text-slate-500 font-medium">Trusted by <span className="text-indigo-600 font-bold">10k+</span> users worldwide</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Hero Right: Booking Form */}
+          {/* Floating Booking Form Overlay */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} 
-            animate={{ opacity: 1, scale: 1 }} 
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="w-full"
+            initial={{ opacity: 0, y: 40 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            className="w-full max-w-5xl"
           >
-            <div className="bg-white rounded-[40px] border border-slate-100 shadow-2xl p-10">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">Find Your Event</h3>
-              <form className="flex flex-col gap-5">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Event Type</label>
-                  <select className="select-glass w-full !pl-4">
+            <div className="glass shadow-2xl p-4 md:p-6 rounded-[40px] border-white/50">
+              <form className="grid grid-cols-1 md:grid-cols-4 items-end gap-4">
+                <div className="text-left px-4">
+                  <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Event Type</label>
+                  <select className="select-glass !bg-transparent !p-0 !border-none !shadow-none !text-lg font-medium">
                     <option value="">Select category...</option>
                     {CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Location</label>
+                <div className="text-left px-4 border-l border-slate-100 hidden md:block">
+                  <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Location</label>
                   <div className="relative">
-                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                    <input type="text" placeholder="City or venue" className="input-glass w-full pl-[44px]" />
+                    <input type="text" placeholder="City or venue" className="input-glass !bg-transparent !p-0 !border-none !shadow-none !text-lg font-medium w-full" />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Date</label>
-                    <div className="relative">
-                      <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input type="date" className="input-glass w-full pl-[44px]" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Budget</label>
-                    <select className="select-glass w-full !pl-4">
-                      <option value="">Any</option>
-                      <option value="high">₹10K+</option>
-                      <option value="med">₹3K - ₹10K</option>
-                      <option value="low">Under ₹3K</option>
-                    </select>
-                  </div>
+                <div className="text-left px-4 border-l border-slate-100 hidden md:block">
+                  <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Budget</label>
+                  <select className="select-glass !bg-transparent !p-0 !border-none !shadow-none !text-lg font-medium">
+                    <option value="">Any</option>
+                    <option value="high">₹10K+</option>
+                    <option value="med">₹3K - ₹10K</option>
+                    <option value="low">Under ₹3K</option>
+                  </select>
                 </div>
-                <Button variant="primary" className="w-full mt-2" size="lg" onClick={(e) => { e.preventDefault(); window.location.href='/events'; }}>
-                  Search Now
-                </Button>
+                <div className="px-2">
+                  <Button variant="primary" className="w-full !rounded-[24px] !py-4 shadow-lg shadow-indigo-200" size="lg" onClick={(e) => { e.preventDefault(); window.location.href='/events'; }}>
+                    Search Now
+                  </Button>
+                </div>
               </form>
             </div>
           </motion.div>
@@ -165,7 +161,7 @@ export default function Home() {
       </section>
 
       {/* ── 2. Stats Section ── */}
-      <section className="py-24 relative z-10 border-y border-slate-100 bg-slate-50/50">
+      <section className="py-24 relative z-10 border-y border-slate-100 bg-white">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-16">
             {[
@@ -175,7 +171,7 @@ export default function Home() {
               { value: '4.9/5', label: 'Average Rating' }
             ].map((stat, i) => (
               <div key={i} className="flex flex-col items-center justify-center text-center px-4">
-                <h4 className="text-5xl md:text-6xl font-black text-slate-900 mb-4">{stat.value}</h4>
+                <h4 className="text-5xl md:text-6xl font-black text-indigo-600 mb-4">{stat.value}</h4>
                 <span className="text-[10px] text-slate-400 uppercase tracking-[0.3em] font-bold">{stat.label}</span>
               </div>
             ))}
@@ -187,8 +183,8 @@ export default function Home() {
       <section className="section relative z-10">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="heading-lg mb-6 text-slate-900">Featured <span className="text-gradient">Events</span></h2>
-            <p className="text-slate-600 text-xl leading-relaxed text-center">Don't miss out on the most anticipated events of the year. Curated just for you.</p>
+            <h2 className="heading-lg mb-6 text-slate-900">Featured <span className="text-indigo-600 font-medium">Events</span></h2>
+            <p className="text-slate-500 text-xl leading-relaxed text-center">Don't miss out on the most anticipated events of the year. Curated just for you.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -203,22 +199,22 @@ export default function Home() {
       <section className="section relative z-10 bg-white">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="heading-lg mb-6 text-slate-900">Browse by <span className="text-gradient">Category</span></h2>
-            <p className="text-slate-600 text-xl leading-relaxed">Whatever you're looking for, we've got the perfect event type ready to explore.</p>
+            <h2 className="heading-lg mb-6 text-slate-900">Browse by <span className="text-indigo-600 font-medium">Category</span></h2>
+            <p className="text-slate-500 text-xl leading-relaxed">Whatever you're looking for, we've got the perfect event type ready to explore.</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {CATEGORIES.map(category => (
               <Link key={category.id} href={`/events?category=${category.id}`} className="group no-underline">
-                <GlassCard padding="lg" className="flex flex-col items-center justify-center text-center h-full hover:border-red-500/20">
+                <div className="bg-white p-8 border border-slate-100 rounded-[32px] shadow-sm flex flex-col items-center justify-center text-center h-full hover:shadow-xl hover:shadow-indigo-500/5 hover:-translate-y-1 transition-all duration-300">
                   <div 
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-4 transition-transform group-hover:scale-110 group-hover:rotate-3 shadow-sm bg-white"
-                    style={{ border: `1px solid ${category.color}40`, color: category.color }}
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-4 transition-transform group-hover:scale-110 group-hover:rotate-3 shadow-sm bg-slate-50"
+                    style={{ border: `1px solid ${category.color}20`, color: category.color }}
                   >
                     {category.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-slate-800 group-hover:text-red-500 transition-colors">{category.name}</h3>
-                </GlassCard>
+                  <h3 className="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{category.name}</h3>
+                </div>
               </Link>
             ))}
           </div>
@@ -226,16 +222,16 @@ export default function Home() {
       </section>
 
       {/* ── 5. How It Works ── */}
-      <section className="section relative z-10 bg-slate-50">
+      <section className="section relative z-10 bg-slate-50/50">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="heading-lg mb-6 text-slate-900">How It <span className="text-gradient">Works</span></h2>
-            <p className="text-slate-600 text-xl leading-relaxed">Your journey to the perfect event is just four simple steps away.</p>
+            <h2 className="heading-lg mb-6 text-slate-900">How It <span className="text-indigo-600 font-medium">Works</span></h2>
+            <p className="text-slate-500 text-xl leading-relaxed">Your journey to the perfect event is just four simple steps away.</p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 relative">
             {/* Connecting Line (Desktop) */}
-            <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-red-500/10 auto transparent z-[-1]" />
+            <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-indigo-500/10 auto transparent z-[-1]" />
             
             {[
               { num: '01', title: 'Discover', desc: 'Browse our curated list of premium events and coordinators based on your preferences.' },
@@ -243,15 +239,15 @@ export default function Home() {
               { num: '03', title: 'Book Securely', desc: 'Confirm your booking with our secure payment gateway and instant ticketing.' },
               { num: '04', title: 'Experience', desc: 'Attend your event with a digital QR ticket and enjoy a flawless experience.' }
             ].map((step, i) => (
-              <div key={i} className="flex flex-col items-center text-center relative">
-                <div className="w-[120px] h-[120px] rounded-full glass flex items-center justify-center mb-6 relative overflow-hidden group bg-white shadow-sm border border-slate-100">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-red-500/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-slate-800 to-slate-400 group-hover:from-red-500 group-hover:to-red-400 transition-colors">
+              <div key={i} className="flex flex-col items-center text-center relative group">
+                <div className="w-[120px] h-[120px] rounded-full bg-white flex items-center justify-center mb-6 relative overflow-hidden shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-indigo-500/10 group-hover:border-indigo-100">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-slate-900 to-slate-400 group-hover:from-indigo-600 group-hover:to-indigo-400 transition-all duration-500">
                     {step.num}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold text-slate-800 mb-3">{step.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+                <p className="text-slate-400 text-sm leading-relaxed max-w-[200px]">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -259,11 +255,11 @@ export default function Home() {
       </section>
 
       {/* ── 6. Testimonials ── */}
-      <section className="section relative z-10 border-t border-slate-100 overflow-hidden bg-white">
-        <div className="container mb-20">
+      <section className="section relative z-10 border-t border-slate-50 overflow-hidden bg-white">
+        <div className="container mb-24">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="heading-lg mb-6 text-slate-900">Impact <span className="text-gradient">Stories</span></h2>
-            <p className="text-slate-600 text-xl leading-relaxed">Real experiences, real results. Hear from those we've transformed.</p>
+            <h2 className="heading-lg mb-6 text-slate-900">Impact <span className="text-indigo-600 font-medium">Stories</span></h2>
+            <p className="text-slate-500 text-xl leading-relaxed">Real experiences, real results. Hear from those we've transformed.</p>
           </div>
         </div>
 
@@ -271,19 +267,19 @@ export default function Home() {
         <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
           <div className="flex animate-marquee items-center justify-center md:justify-start [&_li]:mx-4 [&_img]:max-w-none hover:[animation-play-state:paused] py-4">
             {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-              <GlassCard key={i} padding="md" className="w-[400px] flex-shrink-0 mx-4 border-l-red-500 border-l-[3px] bg-white shadow-sm">
-                <div className="flex gap-1 text-gold mb-4">
-                  {[...Array(t.rating)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
+              <div key={i} className="w-[420px] flex-shrink-0 mx-4 p-8 rounded-[32px] border border-slate-100 bg-white shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-500">
+                <div className="flex gap-1 text-gold mb-5">
+                  {[...Array(t.rating)].map((_, j) => <Star key={j} size={15} fill="currentColor" />)}
                 </div>
-                <p className="text-slate-700 text-[15px] italic mb-6">"{t.text}"</p>
+                <p className="text-slate-600 text-[16px] leading-[1.6] italic mb-8">"{t.text}"</p>
                 <div className="flex items-center gap-4">
-                  <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover border border-slate-200" />
+                  <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover grayscale opacity-80" />
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm">{t.name}</h4>
-                    <p className="text-xs text-slate-500">{t.role} • {t.event}</p>
+                    <h4 className="font-bold text-slate-900 text-sm tracking-tight">{t.name}</h4>
+                    <p className="text-[11px] font-bold text-indigo-500 uppercase tracking-widest">{t.role}</p>
                   </div>
                 </div>
-              </GlassCard>
+              </div>
             ))}
           </div>
         </div>
@@ -292,23 +288,29 @@ export default function Home() {
       {/* ── 7. CTA Section ── */}
       <section className="section relative z-10">
         <div className="container">
-          <GlassPanel className="relative overflow-hidden p-12 md:p-20 text-center rounded-[40px] border-red-500/10 shadow-xl bg-white">
-            <div className="absolute inset-0 bg-gradient-to-r from-red-50 via-white to-red-50" />
+          <div className="relative overflow-hidden p-16 md:p-24 text-center rounded-[48px] bg-indigo-600 shadow-2xl shadow-indigo-200">
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-indigo-700 to-indigo-800" />
+            
+            {/* CTA Aurora Orbs */}
+            <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-indigo-400/20 rounded-full blur-3xl animate-pulse" />
+
             <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="heading-lg mb-6 text-slate-900">Ready to Elevate Your Next Event?</h2>
-              <p className="text-xl text-slate-600 mb-10">
+              <h2 className="text-4xl md:text-5xl font-black mb-8 text-white tracking-tight">Ready to Elevate Your Next Event?</h2>
+              <p className="text-xl text-indigo-100 opacity-90 mb-12 leading-relaxed">
                 Join thousands of users who have transformed their event ideas into spectacular realities. Connect with coordinators today.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/events" className="btn-primary space-x-2">
-                  <span>Browse Events</span> <ArrowRight size={18} />
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Link href="/events" className="bg-white text-indigo-600 px-10 py-5 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition-transform flex items-center justify-center gap-2">
+                  <span>Browse Events</span> <ArrowRight size={20} />
                 </Link>
-                <Link href="/auth/signup" className="btn-glass space-x-2">
-                  <Users size={18} /> <span>Join as Member</span>
+                <Link href="/auth/signup" className="border border-white/20 bg-white/5 text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+                  <Users size={20} /> <span>Join as Member</span>
                 </Link>
               </div>
             </div>
-          </GlassPanel>
+          </div>
         </div>
       </section>
 

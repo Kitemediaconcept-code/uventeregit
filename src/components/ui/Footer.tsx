@@ -1,85 +1,74 @@
 import Link from 'next/link';
 import { Calendar, Camera, MessageCircle, Briefcase, Mail } from 'lucide-react';
 
+import Link from 'next/link';
+import { Instagram, Twitter, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+
 export default function Footer() {
   return (
-    <footer style={{
-      background: '#ffffff',
-      borderTop: '1px solid rgba(0, 0, 0, 0.05)',
-      paddingTop: '80px',
-      paddingBottom: '40px',
-      marginTop: 'auto'
-    }}>
+    <footer className="bg-white border-t border-slate-100 pt-24 pb-12">
       <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '40px',
-          marginBottom: '60px'
-        }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Info */}
-          <div>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: '20px' }}>
+          <div className="col-span-1 md:col-span-1 lg:col-span-1">
+            <Link href="/" className="inline-flex items-center gap-3 mb-8 no-underline">
               <img 
                 src="/logo.png" 
                 alt="Uventere Logo" 
-                style={{ height: 42, width: 'auto', objectFit: 'contain' }} 
+                className="h-10 w-auto object-contain"
+                style={{ filter: 'hue-rotate(220deg)' }} 
               />
             </Link>
-            <p style={{ color: 'var(--color-text-muted)', fontSize: '15px', marginBottom: '24px', maxWidth: '280px' }}>
-              Premium event coordination and booking platform. Turn your vision into unforgettable experiences.
+            <p className="text-slate-500 text-[15px] leading-relaxed mb-8 max-w-[280px]">
+              The premium event creation and discovery platform for the next generation of experiences. 
             </p>
-            <div style={{ display: 'flex', gap: '16px' }}>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'color 0.3s' }} className="hover:text-primary-light">
-                <Camera size={20} />
-              </a>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'color 0.3s' }} className="hover:text-primary-light">
-                <MessageCircle size={20} />
-              </a>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'color 0.3s' }} className="hover:text-primary-light">
-                <Briefcase size={20} />
-              </a>
+            <div className="flex gap-4">
+              {[Instagram, Twitter, Linkedin].map((Icon, i) => (
+                <a key={i} href="#" className="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:border-indigo-100 hover:bg-indigo-50 transition-all duration-300">
+                  <Icon size={18} />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Quick Links</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <Link href="/events" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Events View</Link>
-              <Link href="/categories" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Categories</Link>
-              <Link href="/coordinators" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Find Coordinators</Link>
-              <Link href="/custom-event" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Request Custom Event</Link>
+            <h4 className="text-indigo-600 font-bold text-sm uppercase tracking-widest mb-8">Platform</h4>
+            <div className="flex flex-col gap-4">
+              {['Explore', 'Categories', 'Coordinators', 'Bespoke Requests'].map((link) => (
+                <Link key={link} href="#" className="text-slate-500 hover:text-indigo-600 transition-colors text-[15px] no-underline flex items-center group">
+                  {link} <ArrowUpRight size={14} className="opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all ml-1" />
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Legal & Support */}
+          {/* Support */}
           <div>
-            <h4 style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Support</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <Link href="/contact" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Contact Us</Link>
-              <Link href="/faq" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">FAQ</Link>
-              <Link href="/terms" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Terms of Service</Link>
-              <Link href="/privacy" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.3s', fontSize: '15px' }} className="hover:text-white">Privacy Policy</Link>
+            <h4 className="text-indigo-600 font-bold text-sm uppercase tracking-widest mb-8">Support</h4>
+            <div className="flex flex-col gap-4">
+              {['Contact Us', 'FAQ', 'Terms of Service', 'Privacy Policy'].map((link) => (
+                <Link key={link} href="#" className="text-slate-500 hover:text-indigo-600 transition-colors text-[15px] no-underline">
+                  {link}
+                </Link>
+              ))}
             </div>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h4 style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '16px', marginBottom: '24px' }}>Newsletter</h4>
-            <p style={{ color: 'var(--color-text-muted)', fontSize: '14px', marginBottom: '16px' }}>
-              Get updates on premium events straight to your inbox.
+            <h4 className="text-indigo-600 font-bold text-sm uppercase tracking-widest mb-8">Stay Updated</h4>
+            <p className="text-slate-500 text-[14px] mb-6 leading-relaxed">
+              Get updates on exclusive events straight to your inbox.
             </p>
-            <div style={{ display: 'flex', gap: '8px' }}>
+            <div className="relative group">
               <input 
                 type="email" 
                 placeholder="Email address" 
-                className="input-glass" 
-                style={{ padding: '10px 14px', fontSize: '14px', borderRadius: '12px' }} 
+                className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 pl-5 pr-14 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all"
               />
               <button 
-                className="btn-primary" 
-                style={{ padding: '10px 16px', borderRadius: '12px', flexShrink: 0 }}
+                className="absolute right-2 top-2 bottom-2 aspect-square rounded-xl bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200"
                 aria-label="Subscribe"
               >
                 <Mail size={18} />
@@ -88,14 +77,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="divider" style={{ marginBottom: '24px' }} />
-        
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p style={{ color: 'var(--color-text-muted)', fontSize: '14px' }}>
-            © {new Date().getFullYear()} Uventere. All rights reserved.
+        <div className="border-t border-slate-100 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-slate-400 text-sm">
+            © {new Date().getFullYear()} Uventere Platform. All rights reserved.
           </p>
-          <div style={{ display: 'flex', gap: '16px', fontSize: '14px', color: 'var(--color-text-muted)' }}>
-            <span>Made with ✨ and UI magic</span>
+          <div className="flex gap-8 text-sm text-slate-400">
+            <span className="hover:text-indigo-600 transition-colors cursor-pointer">Security</span>
+            <span className="hover:text-indigo-600 transition-colors cursor-pointer">Status</span>
+            <span className="hover:text-indigo-600 transition-colors cursor-pointer font-medium text-slate-900 border-l border-slate-200 pl-8">Build v2.4.0</span>
           </div>
         </div>
       </div>

@@ -36,19 +36,12 @@ export default function Navbar() {
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         setIsLoggedIn(true);
-        setUserName(session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User');
-      } else {
-        setIsLoggedIn(false);
-        setUserName('');
-      }
-    });
-    return () => listener.subscription.unsubscribe();
-  }, []);
+  const { user } = useAuth();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Close mobile menu on route change
@@ -56,9 +49,6 @@ export default function Navbar() {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    setIsLoggedIn(false);
-    setUserName('');
-    setUserMenuOpen(false);
     window.location.href = '/';
   };
 
@@ -73,167 +63,39 @@ export default function Navbar() {
   return (
     <>
       {/* ── Main Navbar ── */}
-      <nav
+      <header 
+        className={`fixed top-0 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-full px-6 flex justify-center`}
         style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 999,
-          transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
-          background: scrolled
-            ? 'rgba(255,255,255,0.95)'
-            : 'transparent',
-          backdropFilter: scrolled ? 'blur(24px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(0,0,0,0.05)' : 'none',
-          padding: scrolled ? '16px 0' : '28px 0',
-          boxShadow: scrolled ? '0 10px 40px rgba(0,0,0,0.04)' : 'none',
+          marginTop: scrolled ? '16px' : '0px',
+          width: scrolled ? 'min(1400px, 95%)' : '100%',
         }}
       >
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div 
+          className={`w-full transition-all duration-500 rounded-full ${scrolled ? 'glass shadow-2xl bg-white/70' : 'bg-transparent'}`}
+          style={{
+            padding: scrolled ? '12px 32px' : '24px 0',
+            border: scrolled ? '1px solid rgba(255, 255, 255, 0.4)' : 'none',
+          }}
+        >
+          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
-          {/* ── Logo ── */}
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <img 
-              src="/logo.png" 
-              alt="Uventere Logo" 
-              style={{ height: 42, width: 'auto', objectFit: 'contain' }} 
-            />
-          </Link>
+            {/* ── Logo ── */}
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+              <img 
+                src="/logo.png" 
+                alt="Uventere Logo" 
+                style={{ height: 38, width: 'auto', objectFit: 'contain', filter: 'hue-rotate(220deg)' }} 
+              />
+            </Link>
 
-          {/* ── Center Nav Links (desktop) ── */}
-          <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            {NAV_LINKS.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`nav-link ${pathname === link.href ? 'active' : ''}`}
-                style={{ padding: '8px 16px', borderRadius: 12, display: 'block' }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* ── Right Actions ── */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-
-            {/* Search Icon */}
-            <button
-              onClick={() => setSearchOpen(true)}
-              style={{
-                background: 'rgba(0,0,0,0.03)',
-                border: '1px solid rgba(0,0,0,0.05)',
-                borderRadius: 12,
-                width: 40, height: 40,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                cursor: 'pointer', color: 'var(--color-text-secondary)',
-                transition: 'all 0.3s',
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255,49,49,0.08)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,49,49,0.2)';
-                (e.currentTarget as HTMLElement).style.color = 'var(--color-primary)';
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.03)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,0,0,0.05)';
-                (e.currentTarget as HTMLElement).style.color = 'var(--color-text-secondary)';
-              }}
-              aria-label="Search"
-            >
-              <Search size={18} />
-            </button>
-
-            {/* Auth / User */}
-            {isLoggedIn ? (
-              <div style={{ position: 'relative' }}>
-                <button
-                  onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: 8,
-                    background: 'rgba(255,49,49,0.05)',
-                    border: '1px solid rgba(255,49,49,0.1)',
-                    borderRadius: 40, padding: '8px 16px 8px 8px',
-                    cursor: 'pointer', color: 'var(--color-primary)',
-                    transition: 'all 0.3s',
-                  }}
+            {/* ── Desktop Navigation ── */}
+            <nav className="hidden lg:flex items-center gap-10">
+              {NAV_LINKS.map((link) => (
+                <Link 
+                  key={link.href} 
+                  href={link.href}
+                  className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors tracking-wide"
                 >
-                  <div style={{
-                    width: 28, height: 28, borderRadius: 14,
-                    background: 'var(--color-primary)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 12, fontWeight: 700, color: 'white',
-                  }}>
-                    {userName[0]?.toUpperCase() || 'U'}
-                  </div>
-                  <span style={{ fontSize: 14, fontWeight: 500 }}>{userName.split(' ')[0]}</span>
-                  <ChevronDown size={14} style={{ transition: 'transform 0.2s', transform: userMenuOpen ? 'rotate(180deg)' : 'none' }} />
-                </button>
-
-                {userMenuOpen && (
-                  <div className="glass" style={{
-                    position: 'absolute', right: 0, top: 'calc(100% + 10px)',
-                    minWidth: 200, padding: '8px', borderRadius: 20, zIndex: 1000,
-                  }}>
-                    {[
-                      { icon: LayoutDashboard, label: 'Dashboard',     href: '/dashboard'          },
-                      { icon: Calendar,        label: 'My Bookings',   href: '/dashboard/bookings' },
-                      { icon: Heart,           label: 'Saved Events',  href: '/dashboard/saved'    },
-                      { icon: User,            label: 'Profile',       href: '/dashboard/profile'  },
-                    ].map(item => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        style={{
-                          display: 'flex', alignItems: 'center', gap: 10,
-                          padding: '10px 14px', borderRadius: 14,
-                          color: 'var(--color-text-secondary)', textDecoration: 'none',
-                          fontSize: 14, fontWeight: 500,
-                          transition: 'all 0.2s',
-                        }}
-                        onMouseEnter={e => {
-                          (e.currentTarget as HTMLElement).style.background = 'rgba(255,49,49,0.05)';
-                          (e.currentTarget as HTMLElement).style.color = 'var(--color-primary)';
-                        }}
-                        onMouseLeave={e => {
-                          (e.currentTarget as HTMLElement).style.background = 'transparent';
-                          (e.currentTarget as HTMLElement).style.color = 'var(--color-text-secondary)';
-                        }}
-                      >
-                        <item.icon size={16} />
-                        {item.label}
-                      </Link>
-                    ))}
-                    <div className="divider" style={{ margin: '8px 0' }} />
-                    <button
-                      onClick={handleSignOut}
-                      style={{
-                        display: 'flex', alignItems: 'center', gap: 10,
-                        padding: '10px 14px', borderRadius: 14,
-                        color: '#f87171', background: 'none', border: 'none',
-                        cursor: 'pointer', fontSize: 14, fontWeight: 500,
-                        width: '100%', transition: 'all 0.2s',
-                      }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(239,68,68,0.1)'; }}
-                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
-                    >
-                      <LogOut size={16} />
-                      Sign Out
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <Link href="/auth/login" className="btn-glass" style={{ padding: '10px 20px', fontSize: 14 }}>
-                  Login
-                </Link>
-                <Link href="/events" className="btn-primary" style={{ padding: '10px 20px', fontSize: 14 }}>
-                  Book an Event
-                </Link>
-              </div>
-            )}
-
-            {/* Mobile Menu Toggle */}
-            <button
               className="mobile-menu-btn"
               onClick={() => setMobileOpen(!mobileOpen)}
               style={{

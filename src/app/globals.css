@@ -3,20 +3,20 @@
 @theme {
   --font-sf: "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  --color-bg-dark: #f8fafc;
+  --color-bg-dark: #ffffff;
   --color-bg-surface: #ffffff;
-  --color-bg-card: #ffffff;
-  --color-glass: rgba(255, 255, 255, 0.7);
-  --color-glass-border: rgba(0, 0, 0, 0.05);
-  --color-glass-hover: rgba(255, 255, 255, 0.9);
+  --color-bg-card: rgba(255, 255, 255, 0.7);
+  --color-glass: rgba(255, 255, 255, 0.4);
+  --color-glass-border: rgba(0, 0, 0, 0.03);
+  --color-glass-hover: rgba(255, 255, 255, 0.6);
 
-  --color-primary: #ff3131;
-  --color-primary-light: #ff6b6b;
-  --color-primary-glow: rgba(255, 49, 49, 0.2);
-  --color-accent: #1e293b;
-  --color-accent-glow: rgba(30, 41, 59, 0.1);
+  --color-primary: #4f46e5;
+  --color-primary-light: #6366f1;
+  --color-primary-glow: rgba(79, 70, 229, 0.1);
+  --color-accent: #0f172a;
+  --color-accent-glow: rgba(15, 23, 42, 0.05);
   --color-gold: #f59e0b;
-  --color-gold-glow: rgba(245, 158, 11, 0.2);
+  --color-gold-glow: rgba(245, 158, 11, 0.1);
 
   --color-text-primary: #0f172a;
   --color-text-secondary: #475569;
@@ -31,9 +31,9 @@
   --radius-btn: 100px;
   --radius-sm: 20px;
 
-  --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02);
-  --shadow-glow: 0 0 40px rgba(255, 49, 49, 0.15);
-  --shadow-card: 0 30px 60px rgba(0, 0, 0, 0.08);
+  --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.01);
+  --shadow-glow: 0 0 60px rgba(79, 70, 229, 0.1);
+  --shadow-card: 0 40px 80px rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -159,11 +159,11 @@ body {
 }
 
 .btn-glass:hover {
-  background: rgba(255, 49, 49, 0.05);
-  border-color: rgba(255, 49, 49, 0.2);
+  background: var(--color-primary-glow);
+  border-color: rgba(79, 70, 229, 0.2);
   color: var(--color-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05), 0 0 10px rgba(255, 49, 49, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05), var(--shadow-glow);
 }
 
 .btn-outline {
@@ -208,8 +208,8 @@ body {
 
 .input-glass:focus {
   background: #ffffff;
-  border-color: rgba(255, 49, 49, 0.5);
-  box-shadow: 0 0 0 3px rgba(255, 49, 49, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .select-glass {
@@ -235,8 +235,8 @@ body {
 .select-glass option { background: #ffffff; color: #0f172a; }
 
 .select-glass:focus {
-  border-color: rgba(255, 49, 49, 0.5);
-  box-shadow: 0 0 0 3px rgba(255, 49, 49, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* ── Typography ── */
@@ -266,7 +266,7 @@ body {
   text-transform: uppercase;
 }
 
-.badge-purple { background: rgba(255, 49, 49, 0.1); border: 1px solid rgba(255, 49, 49, 0.2); color: #ff3131; }
+.badge-purple { background: rgba(79, 70, 229, 0.1); border: 1px solid rgba(79, 70, 229, 0.2); color: #4f46e5; }
 .badge-cyan { background: rgba(30, 41, 59, 0.05); border: 1px solid rgba(30, 41, 59, 0.1); color: #1e293b; }
 .badge-gold { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); color: #d97706; }
 .badge-green { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); color: #059669; }
@@ -283,9 +283,9 @@ body {
   z-index: 0;
 }
 
-.orb-purple { background: radial-gradient(circle, #ff3131, transparent 70%); }
-.orb-cyan   { background: radial-gradient(circle, #ffe4e4, transparent 70%); }
-.orb-pink   { background: radial-gradient(circle, #ffd1d1, transparent 70%); }
+.orb-purple { background: radial-gradient(circle, rgba(79, 70, 229, 0.4), transparent 70%); }
+.orb-cyan   { background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent 70%); }
+.orb-pink   { background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent 70%); }
 
 @keyframes orbFloat {
   0%, 100% { transform: translateY(0) scale(1); }

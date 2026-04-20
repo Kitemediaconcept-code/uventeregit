@@ -9,24 +9,23 @@ import { GlassCard } from '../ui/GlassCard';
 
 export function EventCard({ event, compact = false }: { event: Event; compact?: boolean }) {
   return (
-    <GlassCard padding="none" glowOnHover className="flex flex-col h-full group">
+    <div className="flex flex-col h-full group bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 hover:-translate-y-1">
       {/* Image Container */}
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <img 
           src={event.image} 
           alt={event.title} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/10 to-transparent" />
         
         {/* Category Badge */}
         <div className="absolute top-4 left-4 z-10">
           <span 
-            className="badge" 
+            className="px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-md" 
             style={{ 
-              background: `${event.categoryColor}20`, // 20% opacity hex
-              border: `1px solid ${event.categoryColor}50`,
-              color: event.categoryColor 
+              background: 'rgba(255, 255, 255, 0.9)',
+              color: '#0f172a' 
             }}
           >
             {event.category}
@@ -36,9 +35,9 @@ export function EventCard({ event, compact = false }: { event: Event; compact?: 
         {/* Hot / Featured Badge */}
         {event.isHot && (
           <div className="absolute top-4 right-4 z-10">
-            <span className="badge badge-red flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              HOT
+            <span className="bg-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+              <span className="w-1 h-1 rounded-full bg-white animate-pulse" />
+              TOP RATED
             </span>
           </div>
         )}
@@ -46,38 +45,26 @@ export function EventCard({ event, compact = false }: { event: Event; compact?: 
 
       {/* Content */}
       <div className="flex flex-col flex-grow p-6">
-        <h3 className="text-xl font-bold text-slate-800 mb-3 line-clamp-2 leading-tight">
+        <div className="flex items-center gap-2 mb-3">
+          <MapPin size={12} className="text-indigo-500" />
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">{event.city}</span>
+        </div>
+        
+        <h3 className="text-xl font-bold text-slate-900 mb-6 group-hover:text-indigo-600 transition-colors leading-tight line-clamp-2">
           {event.title}
         </h3>
         
-        <div className="flex flex-col gap-2 mb-6">
-          <div className="flex items-center text-sm text-slate-500">
-            <Calendar size={16} className="mr-2 text-red-500" />
-            {formatDate(event.date)}
-          </div>
-          {!compact && (
-            <div className="flex items-center text-sm text-slate-500">
-              <Clock size={16} className="mr-2 text-red-400" />
-              {event.time}
-            </div>
-          )}
-          <div className="flex items-center text-sm text-slate-500">
-            <MapPin size={16} className="mr-2 text-red-400" />
-            {event.city}
-          </div>
-        </div>
-
-        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-          <div>
-            <span className="text-xs text-slate-500 uppercase tracking-wider block mb-0.5">Starts from</span>
-            <span className="text-xl font-bold text-slate-900">{formatCurrency(event.price)}</span>
+        <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+          <div className="flex items-center gap-1 text-slate-900">
+            <span className="text-sm font-medium opacity-50">from</span>
+            <span className="text-lg font-black">{formatCurrency(event.price)}</span>
           </div>
           
-          <Link href={`/events/${event.id}`} className="btn-outline px-5 py-2.5 text-sm !rounded-full hover:bg-red-50 hover:border-red-400">
-            Book <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform ml-1" />
+          <Link href={`/events/${event.id}`} className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-indigo-600 transition-all group-hover:scale-110 shadow-lg">
+            <ArrowRight size={18} />
           </Link>
         </div>
       </div>
-    </GlassCard>
+    </div>
   );
 }
