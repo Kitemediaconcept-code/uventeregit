@@ -1,13 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ChevronRight, Star, Users, MapPin, CalendarDays, ArrowRight } from 'lucide-react';
 import { GlassCard, GlassPanel } from '@/components/ui/GlassCard';
 import { Button } from '@/components/ui/Button';
 import { EventCard } from '@/components/events/EventCard';
-import { EVENTS, CATEGORIES, COORDINATORS, TESTIMONIALS } from '@/lib/data';
+import { EVENTS, CATEGORIES, COORDINATORS, TESTIMONIALS, type Event } from '@/lib/data';
+import { supabase } from '@/lib/supabase';
 
 // Variants for Framer Motion
 const staggerContainer = {
@@ -24,8 +25,43 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const [dbEvents, setDbEvents] = useState<Event[]>([]);
   const featuredEvents = EVENTS.filter(e => e.isFeatured).slice(0, 4);
-  const topCoordinators = COORDINATORS.slice(0, 4);
+
+  useEffect(() => {
+    const fetchApprovedEvents = async () => {
+      const { data } = await supabase.from('event_requests').select('*').eq('status', 'approved');
+      if (data && data.length > 0) {
+        const formatted: Event[] = data.map((d: any) => ({
+          id: d.id,
+          title: d.event_name,
+          category: 'Bespoke',
+          categoryColor: '#ff3131',
+          isHot: true,
+          isFeatured: true,
+          image: d.media_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+          date: d.created_at,
+          time: 'Custom Time',
+          venue: 'TBD',
+          city: 'Custom Location',
+          price: 0, // Request-based pricing
+          coordinator: d.full_name,
+          coordinatorAvatar: '',
+          rating: 5.0,
+          booked: Math.floor(Math.random() * 50),
+          capacity: 100,
+          description: d.description,
+          attendeesPreview: [],
+          ticketTypes: [],
+          tags: []
+        }));
+        setDbEvents(formatted);
+      }
+    };
+    fetchApprovedEvents();
+  }, []);
+
+  const displayEvents = dbEvents.length > 0 ? dbEvents.slice(0, 4) : featuredEvents;
 
   return (
     <div className="flex flex-col gap-0 w-full mb-20 overflow-hidden">
@@ -89,7 +125,7 @@ export default function Home() {
               <form className="flex flex-col gap-5">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Event Type</label>
-                  <select className="select-glass w-full">
+                  <select className="select-glass w-full !pl-4">
                     <option value="">Select category...</option>
                     {CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
@@ -111,7 +147,7 @@ export default function Home() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Budget</label>
-                    <select className="select-glass w-full">
+                    <select className="select-glass w-full !pl-4">
                       <option value="">Any</option>
                       <option value="high">₹10K+</option>
                       <option value="med">₹3K - ₹10K</option>
@@ -161,8 +197,8 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredEvents.map(event => (
-              <EventCard key={event.id} event={event} />
+            {displayEvents.map((event, idx) => (
+              <EventCard key={event.id || idx} event={event} />
             ))}
           </div>
         </div>

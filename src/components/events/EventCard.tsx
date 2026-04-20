@@ -17,7 +17,7 @@ export function EventCard({ event, compact = false }: { event: Event; compact?: 
           alt={event.title} 
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         
         {/* Category Badge */}
         <div className="absolute top-4 left-4 z-10">
@@ -67,14 +67,14 @@ export function EventCard({ event, compact = false }: { event: Event; compact?: 
           </div>
         </div>
 
-        <div className="mt-auto pt-4 border-t border-slate-100 flex items-end justify-between">
+        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
           <div>
-            <span className="text-xs text-slate-500 uppercase tracking-wider block mb-1">Starts from</span>
-            <span className="text-lg font-bold text-slate-900">{formatCurrency(event.price)}</span>
+            <span className="text-xs text-slate-500 uppercase tracking-wider block mb-0.5">Starts from</span>
+            <span className="text-xl font-bold text-slate-900">{formatCurrency(event.price)}</span>
           </div>
           
-          <Link href={`/events/${event.id}`} className="btn-outline px-4 py-2 text-sm !rounded-full hover:bg-red-500/10 hover:border-red-500/20">
-            Book <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          <Link href={`/events/${event.id}`} className="btn-outline px-5 py-2.5 text-sm !rounded-full hover:bg-red-50 hover:border-red-400">
+            Book <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform ml-1" />
           </Link>
         </div>
       </div>
