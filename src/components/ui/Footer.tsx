@@ -1,8 +1,5 @@
 import Link from 'next/link';
-import { Calendar, Camera, MessageCircle, Briefcase, Mail } from 'lucide-react';
-
-import Link from 'next/link';
-import { Instagram, Twitter, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { Globe, Share2, Mail, ArrowUpRight, MessageCircle } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -23,7 +20,7 @@ export default function Footer() {
               The premium event creation and discovery platform for the next generation of experiences. 
             </p>
             <div className="flex gap-4">
-              {[Instagram, Twitter, Linkedin].map((Icon, i) => (
+              {[Globe, Share2, MessageCircle].map((Icon, i) => (
                 <a key={i} href="#" className="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:border-indigo-100 hover:bg-indigo-50 transition-all duration-300">
                   <Icon size={18} />
                 </a>

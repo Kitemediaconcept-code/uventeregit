@@ -32,11 +32,21 @@ export default function Navbar() {
         setUserName(session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User');
       }
     };
+    
     checkSession();
+
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         setIsLoggedIn(true);
-  const { user } = useAuth();
+        setUserName(session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User');
+      } else {
+        setIsLoggedIn(false);
+        setUserName('');
+      }
+    });
+
+    return () => listener.subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -45,10 +55,15 @@ export default function Navbar() {
   }, []);
 
   // Close mobile menu on route change
-  useEffect(() => { setMobileOpen(false); setUserMenuOpen(false); }, [pathname]);
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
+    setIsLoggedIn(false);
+    setUserName('');
+    setUserMenuOpen(false);
     window.location.href = '/';
   };
 
@@ -96,23 +111,43 @@ export default function Navbar() {
                   href={link.href}
                   className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors tracking-wide"
                 >
-              className="mobile-menu-btn"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                borderRadius: 12,
-                width: 40, height: 40,
-                display: 'none', alignItems: 'center', justifyContent: 'center',
-                cursor: 'pointer', color: 'var(--color-text-primary)',
-              }}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex items-center gap-4">
+              <button className="p-2 text-slate-800 hover:text-indigo-600 transition-colors" onClick={() => setSearchOpen(true)}>
+                <Search size={20} />
+              </button>
+              
+              {isLoggedIn ? (
+                <div className="flex items-center gap-4">
+                  <div className="flex flex-col items-end hidden sm:flex">
+                    <span className="text-xs font-bold text-indigo-600 uppercase tracking-tighter">Coordinator</span>
+                    <span className="text-sm font-medium text-slate-800">{userName}</span>
+                  </div>
+                  <button 
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    className="w-10 h-10 rounded-full border border-indigo-100 flex items-center justify-center bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors"
+                  >
+                    <User size={18} />
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <Link href="/auth/login" className="text-sm font-semibold text-slate-800 px-5 py-2 hover:text-indigo-600 transition-colors">
+                    Login
+                  </Link>
+                  <Link href="/custom-event" className="btn-primary !px-5 !py-2.5 !text-sm !font-bold !rounded-full shadow-lg shadow-indigo-200">
+                    Book an Event
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </nav>
+      </header>
 
       {/* ── Mobile Menu Overlay ── */}
       <div
