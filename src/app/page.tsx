@@ -165,9 +165,9 @@ export default function Home() {
       </section>
 
       {/* ── 2. Stats Section ── */}
-      <section className="section-sm relative z-10 border-y border-slate-100 bg-slate-50">
+      <section className="py-24 relative z-10 border-y border-slate-100 bg-slate-50/50">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-16">
             {[
               { value: '500+', label: 'Events Hosted' },
               { value: '50K+', label: 'Happy Attendees' },
@@ -175,8 +175,8 @@ export default function Home() {
               { value: '4.9/5', label: 'Average Rating' }
             ].map((stat, i) => (
               <div key={i} className="flex flex-col items-center justify-center text-center px-4">
-                <h4 className="text-4xl md:text-5xl font-black text-slate-900 mb-3">{stat.value}</h4>
-                <span className="text-xs text-slate-500 uppercase tracking-[0.2em] font-bold">{stat.label}</span>
+                <h4 className="text-5xl md:text-6xl font-black text-slate-900 mb-4">{stat.value}</h4>
+                <span className="text-[10px] text-slate-400 uppercase tracking-[0.3em] font-bold">{stat.label}</span>
               </div>
             ))}
           </div>
