@@ -120,18 +120,18 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="w-full max-w-lg mx-auto lg:mt-0 lg:ml-auto"
           >
-            <GlassCard padding="lg" className="border-t-black/5 shadow-2xl">
-              <h3 className="text-2xl font-bold text-slate-800 mb-6">Find Your Event</h3>
+            <GlassCard padding="lg" className="border border-slate-100 shadow-2xl bg-white">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Find Your Event</h3>
               <form className="flex flex-col gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Event Type</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Event Type</label>
                   <select className="select-glass w-full !pl-4">
                     <option value="">Select category...</option>
                     {CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Location</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Location</label>
                   <div className="relative">
                     <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                     <input type="text" placeholder="City or venue" className="input-glass w-full pl-[44px]" />
@@ -139,14 +139,14 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Date</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Date</label>
                     <div className="relative">
                       <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input type="date" className="input-glass w-full pl-[44px] [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
+                      <input type="date" className="input-glass w-full pl-[44px]" />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Budget</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Budget</label>
                     <select className="select-glass w-full !pl-4">
                       <option value="">Any</option>
                       <option value="high">₹10K+</option>
@@ -205,7 +205,7 @@ export default function Home() {
       </section>
 
       {/* ── 4. Categories ── */}
-      <section className="section relative z-10 bg-black/40">
+      <section className="section relative z-10 bg-slate-50">
         <div className="container">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="heading-lg mb-4">Browse by <span className="text-gradient">Category</span></h2>
@@ -274,16 +274,16 @@ export default function Home() {
         <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
           <div className="flex animate-marquee items-center justify-center md:justify-start [&_li]:mx-4 [&_img]:max-w-none hover:[animation-play-state:paused] py-4">
             {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-              <GlassCard key={i} padding="md" className="w-[400px] flex-shrink-0 mx-4 border-l-red-500/50 border-l-[3px] bg-white">
+              <GlassCard key={i} padding="md" className="w-[400px] flex-shrink-0 mx-4 border-l-red-500 border-l-[3px] bg-white shadow-sm">
                 <div className="flex gap-1 text-gold mb-4">
                   {[...Array(t.rating)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
                 </div>
-                <p className="text-slate-200 text-[15px] italic mb-6">"{t.text}"</p>
+                <p className="text-slate-700 text-[15px] italic mb-6">"{t.text}"</p>
                 <div className="flex items-center gap-4">
                   <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover border border-slate-200" />
                   <div>
-                    <h4 className="font-bold text-slate-800 text-sm">{t.name}</h4>
-                    <p className="text-xs text-slate-400">{t.role} • {t.event}</p>
+                    <h4 className="font-bold text-slate-900 text-sm">{t.name}</h4>
+                    <p className="text-xs text-slate-500">{t.role} • {t.event}</p>
                   </div>
                 </div>
               </GlassCard>
@@ -299,7 +299,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-r from-red-50 via-white to-red-50" />
             <div className="relative z-10 max-w-3xl mx-auto">
               <h2 className="heading-lg mb-6 text-slate-900">Ready to Elevate Your Next Event?</h2>
-              <p className="text-xl text-slate-300 mb-10">
+              <p className="text-xl text-slate-600 mb-10">
                 Join thousands of users who have transformed their event ideas into spectacular realities. Connect with coordinators today.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

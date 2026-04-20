@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Search, Menu, X, Calendar, ChevronDown, User, LogOut, LayoutDashboard, Heart } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 const NAV_LINKS = [
   { label: 'Explore',      href: '/events'       },
@@ -20,17 +21,28 @@ export default function Navbar() {
   const [searchQuery,  setSearchQuery]  = useState('');
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-  // Mock auth state — replace with Supabase session
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName,   setUserName]   = useState('');
 
   useEffect(() => {
-    const stored = localStorage.getItem('uventere_user');
-    if (stored) {
-      const user = JSON.parse(stored);
-      setIsLoggedIn(true);
-      setUserName(user.name || 'User');
-    }
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        setIsLoggedIn(true);
+        setUserName(session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User');
+      }
+    };
+    checkSession();
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setIsLoggedIn(true);
+        setUserName(session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User');
+      } else {
+        setIsLoggedIn(false);
+        setUserName('');
+      }
+    });
+    return () => listener.subscription.unsubscribe();
   }, []);
 
   useEffect(() => {
@@ -42,11 +54,12 @@ export default function Navbar() {
   // Close mobile menu on route change
   useEffect(() => { setMobileOpen(false); setUserMenuOpen(false); }, [pathname]);
 
-  const handleSignOut = () => {
-    localStorage.removeItem('uventere_user');
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
     setIsLoggedIn(false);
     setUserName('');
     setUserMenuOpen(false);
+    window.location.href = '/';
   };
 
   const handleSearch = (e: React.FormEvent) => {
