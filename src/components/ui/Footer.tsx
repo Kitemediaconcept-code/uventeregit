@@ -21,9 +21,9 @@ export default function Footer() {
           <div>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: '20px' }}>
               <img 
-                src="/uventere-logo.png" 
+                src="/logo.png" 
                 alt="Uventere Logo" 
-                style={{ height: 36, width: 'auto', objectFit: 'contain' }} 
+                style={{ height: 42, width: 'auto', objectFit: 'contain' }} 
               />
             </Link>
             <p style={{ color: 'var(--color-text-muted)', fontSize: '15px', marginBottom: '24px', maxWidth: '280px' }}>
