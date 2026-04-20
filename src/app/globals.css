@@ -26,9 +26,9 @@
   --color-warning: #f59e0b;
   --color-error: #ef4444;
 
-  --radius-glass: 30px;
+  --radius-glass: 32px;
   --radius-card: 24px;
-  --radius-btn: 30px;
+  --radius-btn: 100px;
   --radius-sm: 16px;
 
   --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
@@ -300,15 +300,15 @@ body {
 }
 
 /* ── Section padding ── */
-.section { padding: 100px 0; }
-.section-sm { padding: 60px 0; }
+.section { padding: 120px 0; }
+.section-sm { padding: 72px 0; }
 
 /* ── Container ── */
 .container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 40px;
 }
 
 /* ── Animations ── */
@@ -395,11 +395,12 @@ body {
 
 /* ── Responsive helpers ── */
 @media (max-width: 768px) {
-  .section { padding: 60px 0; }
-  .container { padding: 0 16px; }
+  .section { padding: 80px 0; }
+  .section-sm { padding: 48px 0; }
+  .container { padding: 0 20px; }
   .glass { border-radius: 24px; }
   .glass-card { border-radius: 20px; }
-  .btn-primary, .btn-glass, .btn-outline { padding: 12px 24px; font-size: 14px; }
+  .btn-primary, .btn-glass, .btn-outline { padding: 13px 26px; font-size: 15px; }
 }
 
 /* ── Hover underline nav links ── */

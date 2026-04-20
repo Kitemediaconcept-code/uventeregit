@@ -67,8 +67,8 @@ export default function Home() {
     <div className="flex flex-col gap-0 w-full mb-20 overflow-hidden">
       
       {/* ── 1. Hero Section ── */}
-      <section className="relative min-h-[90vh] flex items-center pt-10">
-        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start pt-8 lg:pt-20">
+      <section className="relative min-h-[95vh] flex items-center pt-24 pb-16">
+        <div className="container relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* Hero Left: Copy */}
           <motion.div 
@@ -77,14 +77,14 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col justify-center max-w-xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/20 bg-red-500/5 text-red-500 text-sm font-medium w-fit mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/20 bg-red-500/5 text-red-500 text-sm font-medium w-fit mb-8">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
               Premium Event Experiences
             </div>
             <h1 className="heading-xl mb-6">
               Plan Your <span className="text-gradient">Perfect</span> Event Effortlessly
             </h1>
-            <p className="text-lg text-slate-300 mb-8 max-w-lg leading-relaxed">
+            <p className="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed">
               Discover, book, and manage exclusive events with top coordinators. Turn your vision into an unforgettable reality with our premium platform.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -96,19 +96,19 @@ export default function Home() {
               </Link>
             </div>
             
-            <div className="mt-12 flex items-center gap-6">
+            <div className="mt-14 flex items-center gap-6">
               <div className="flex -space-x-4">
                 {[1,2,3,4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm">
                     <img src={`https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80&img=${i}`} alt="user" className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
               <div className="text-sm">
-                <div className="flex items-center text-gold mb-0.5">
+                <div className="flex items-center text-gold mb-1">
                   {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="currentColor" />)}
                 </div>
-                <span className="text-slate-400">Trusted by <span className="text-white font-semibold">10k+</span> users</span>
+                <span className="text-slate-500">Trusted by <span className="text-slate-900 font-bold">10k+</span> users</span>
               </div>
             </div>
           </motion.div>
