@@ -30,7 +30,7 @@ export default function DashboardOverview() {
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <GlassCard padding="sm" className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center">
             <Calendar size={24} />
           </div>
           <div>
@@ -40,7 +40,7 @@ export default function DashboardOverview() {
         </GlassCard>
         
         <GlassCard padding="sm" className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center">
             <Ticket size={24} />
           </div>
           <div>
@@ -64,7 +64,7 @@ export default function DashboardOverview() {
       <GlassPanel className="p-6 sm:p-8 rounded-[32px]">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-white">Recent Activity</h2>
-          <Link href="/dashboard/bookings" className="text-sm text-purple-400 hover:text-purple-300 flex items-center gap-1">
+          <Link href="/dashboard/bookings" className="text-sm text-red-400 hover:text-red-300 flex items-center gap-1">
             View All <ArrowRight size={14}/>
           </Link>
         </div>

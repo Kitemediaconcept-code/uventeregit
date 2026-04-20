@@ -31,7 +31,7 @@ export function EventFilters({ filters, setFilters, onClear }: EventFiltersProps
     <GlassPanel className="p-6 sticky top-24 border-r-0 border-l-0 sm:border-r sm:border-l sm:rounded-[32px] sm:border-white/10">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-bold flex items-center gap-2">
-          <SlidersHorizontal size={18} className="text-purple-400" />
+          <SlidersHorizontal size={18} className="text-red-400" />
           Filters
         </h3>
         {hasActiveFilters && (
@@ -70,7 +70,7 @@ export function EventFilters({ filters, setFilters, onClear }: EventFiltersProps
               onClick={() => handleFilterChange('category', '')}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                 filters.category === '' 
-                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20' 
+                  ? 'bg-red-600 text-white shadow-lg shadow-red-500/20' 
                   : 'bg-white/5 text-slate-300 hover:bg-white/10'
               }`}
             >

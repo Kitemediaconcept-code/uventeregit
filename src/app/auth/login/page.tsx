@@ -53,10 +53,10 @@ function LoginContent() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-20 relative">
       <div className="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
-         <div className="orb orb-purple w-[500px] h-[500px] top-[10%] left-[20%]" />
+         <div className="orb orb-red w-[500px] h-[500px] top-[10%] left-[20%]" />
       </div>
 
-      <GlassCard padding="lg" className="w-full max-w-md mx-4 drop-shadow-2xl border-t-purple-500/30">
+      <GlassCard padding="lg" className="w-full max-w-md mx-4 drop-shadow-2xl border-t-red-500/30">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
           <p className="text-slate-400">Sign in to book and manage events.</p>
@@ -79,7 +79,7 @@ function LoginContent() {
           <div>
             <div className="flex justify-between mb-2">
               <label className="block text-sm font-medium text-slate-300">Password</label>
-              <Link href="#" className="text-sm text-purple-400 hover:text-purple-300">Forgot?</Link>
+              <Link href="#" className="text-sm text-red-400 hover:text-red-300">Forgot?</Link>
             </div>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
@@ -98,7 +98,7 @@ function LoginContent() {
           </Button>
 
           <p className="text-center text-slate-400 text-sm mt-6">
-             Don't have an account? <Link href={`/auth/signup?redirect=${encodeURIComponent(redirect)}`} className="text-purple-400 font-medium hover:text-purple-300">Sign up free</Link>
+             Don't have an account? <Link href={`/auth/signup?redirect=${encodeURIComponent(redirect)}`} className="text-red-400 font-medium hover:text-red-300">Sign up free</Link>
           </p>
         </form>
       </GlassCard>

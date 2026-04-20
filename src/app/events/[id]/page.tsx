@@ -59,35 +59,35 @@ export default function EventDetail() {
   };
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 bg-[#f8fafc]">
       {/* ── Hero Banner ── */}
       <div className="relative h-[400px] md:h-[500px] w-full">
-        <div className="absolute inset-0 bg-black">
+        <div className="absolute inset-0 bg-white">
           <img src={event.image} alt={event.title} className="w-full h-full object-cover opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#06060f] via-[#06060f]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#f8fafc] via-white/40 to-transparent" />
         </div>
         
         <div className="container relative h-full flex flex-col justify-end pb-12 z-10">
           <button 
             onClick={() => router.back()} 
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-6 transition-colors border border-white/10"
+            className="w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 backdrop-blur-md flex items-center justify-center text-slate-800 mb-6 transition-colors border border-black/5"
           >
             <ArrowLeft size={18} />
           </button>
 
           <div className="flex flex-wrap gap-3 mb-4">
-            <span className="badge" style={{ background: `${event.categoryColor}30`, color: event.categoryColor, border: `1px solid ${event.categoryColor}60` }}>
+            <span className="badge" style={{ background: `${event.categoryColor}15`, color: event.categoryColor, border: `1px solid ${event.categoryColor}30` }}>
               {event.category.toUpperCase()}
             </span>
             {event.isHot && <span className="badge badge-red">HOT SELLING</span>}
           </div>
 
-          <h1 className="heading-lg text-white mb-4 max-w-4xl">{event.title}</h1>
+          <h1 className="heading-lg text-slate-900 mb-4 max-w-4xl">{event.title}</h1>
           
-          <div className="flex flex-wrap items-center gap-6 text-slate-300 font-medium">
-            <div className="flex items-center gap-2"><Calendar size={18} className="text-purple-400" /> {formatDate(event.date)}</div>
-            <div className="flex items-center gap-2"><Clock size={18} className="text-cyan-400" /> {event.time}</div>
-            <div className="flex items-center gap-2"><MapPin size={18} className="text-red-400" /> {event.venue}, {event.city}</div>
+          <div className="flex flex-wrap items-center gap-6 text-slate-600 font-medium">
+            <div className="flex items-center gap-2"><Calendar size={18} className="text-red-500" /> {formatDate(event.date)}</div>
+            <div className="flex items-center gap-2"><Clock size={18} className="text-red-400" /> {event.time}</div>
+            <div className="flex items-center gap-2"><MapPin size={18} className="text-red-500" /> {event.venue}, {event.city}</div>
           </div>
         </div>
       </div>
@@ -100,23 +100,23 @@ export default function EventDetail() {
             
             {/* About */}
             <section>
-              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Info size={24} className="text-purple-400"/> About Event</h2>
-              <p className="text-slate-300 leading-relaxed text-lg">
+              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Info size={24} className="text-red-500"/> About Event</h2>
+              <p className="text-slate-600 leading-relaxed text-lg">
                 {event.description}
               </p>
             </section>
 
             {/* Coordinator Info */}
             <section>
-              <h2 className="text-xl font-bold mb-4">Organized By</h2>
-              <GlassCard padding="sm" className="flex items-center gap-4">
-                <img src={event.coordinatorAvatar} alt={event.coordinator} className="w-16 h-16 rounded-full object-cover border-2 border-purple-500/50" />
+              <h2 className="text-xl font-bold mb-4 text-slate-800">Organized By</h2>
+              <GlassCard padding="sm" className="flex items-center gap-4 bg-white/50 border-black/5 shadow-sm">
+                <img src={event.coordinatorAvatar} alt={event.coordinator} className="w-16 h-16 rounded-full object-cover border-2 border-red-500/20" />
                 <div>
-                  <h4 className="text-lg font-bold text-white flex items-center gap-2">
+                  <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                     {event.coordinator}
-                    <CheckCircle2 size={16} className="text-blue-400" />
+                    <CheckCircle2 size={16} className="text-red-500" />
                   </h4>
-                  <div className="flex items-center gap-2 text-sm text-slate-400 mt-1">
+                  <div className="flex items-center gap-2 text-sm text-slate-500 mt-1">
                     <Star size={14} className="text-gold fill-gold" /> {event.rating} Rating
                   </div>
                 </div>
@@ -128,15 +128,15 @@ export default function EventDetail() {
 
             {/* Event Stats / Highlights */}
             <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <GlassPanel className="p-4 text-center">
-                <Users size={24} className="mx-auto mb-2 text-cyan-400" />
-                <div className="text-xl font-bold text-white">{event.capacity}</div>
-                <div className="text-xs text-slate-400">Capacity</div>
+              <GlassPanel className="p-4 text-center bg-white shadow-sm border-black/5">
+                <Users size={24} className="mx-auto mb-2 text-red-400" />
+                <div className="text-xl font-bold text-slate-900">{event.capacity}</div>
+                <div className="text-xs text-slate-500">Capacity</div>
               </GlassPanel>
-              <GlassPanel className="p-4 text-center">
-                <CheckCircle2 size={24} className="mx-auto mb-2 text-green-400" />
-                <div className="text-xl font-bold text-white">{Math.round((event.booked / event.capacity) * 100)}%</div>
-                <div className="text-xs text-slate-400">Booked</div>
+              <GlassPanel className="p-4 text-center bg-white shadow-sm border-black/5">
+                <CheckCircle2 size={24} className="mx-auto mb-2 text-red-500" />
+                <div className="text-xl font-bold text-slate-900">{Math.round((event.booked / event.capacity) * 100)}%</div>
+                <div className="text-xs text-slate-500">Booked</div>
               </GlassPanel>
             </section>
 
@@ -144,8 +144,8 @@ export default function EventDetail() {
 
           {/* ── Sticky Sidebar (Booking Widget) ── */}
           <div className="w-full lg:w-[400px] shrink-0 lg:sticky lg:top-28">
-            <GlassCard padding="lg" glowOnHover className="border-t-purple-500/30 border-t-2">
-              <h3 className="text-2xl font-bold text-white mb-6">Select Tickets</h3>
+            <GlassCard padding="lg" glowOnHover className="border-t-red-500/20 border-t-2 shadow-2xl bg-white">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Select Tickets</h3>
               
               <div className="space-y-4 mb-6">
                 {event.ticketTypes.map((t, idx) => (
@@ -153,8 +153,8 @@ export default function EventDetail() {
                     key={idx} 
                     className={`block relative p-4 rounded-[20px] border cursor-pointer transition-all ${
                       selectedTicket === idx 
-                        ? 'bg-purple-900/30 border-purple-500 shadow-[0_0_20px_rgba(124,58,237,0.2)]' 
-                        : 'bg-white/5 border-white/10 hover:bg-white/10'
+                        ? 'bg-red-50 border-red-500 shadow-[0_0_15px_rgba(255,49,49,0.1)]' 
+                        : 'bg-[#f8fafc] border-black/5 hover:bg-slate-50'
                     }`}
                   >
                     <input 
@@ -165,13 +165,13 @@ export default function EventDetail() {
                       onChange={() => setSelectedTicket(idx)}
                     />
                     <div className="flex justify-between items-start mb-2">
-                      <span className={`font-bold ${selectedTicket === idx ? 'text-white' : 'text-slate-200'}`}>{t.type}</span>
-                      <span className="font-bold text-lg text-white">{formatCurrency(t.price)}</span>
+                      <span className={`font-bold ${selectedTicket === idx ? 'text-slate-900' : 'text-slate-700'}`}>{t.type}</span>
+                      <span className="font-bold text-lg text-slate-900">{formatCurrency(t.price)}</span>
                     </div>
                     <ul className="space-y-1">
                       {t.perks.map((p, i) => (
-                        <li key={i} className="text-xs text-slate-400 flex items-center gap-1.5">
-                          <CheckCircle2 size={12} className={selectedTicket === idx ? 'text-purple-400' : 'text-slate-500'} /> {p}
+                        <li key={i} className="text-xs text-slate-600 flex items-center gap-1.5">
+                          <CheckCircle2 size={12} className={selectedTicket === idx ? 'text-red-500' : 'text-slate-400'} /> {p}
                         </li>
                       ))}
                     </ul>
@@ -180,30 +180,30 @@ export default function EventDetail() {
               </div>
 
               {/* Quantity */}
-              <div className="flex items-center justify-between mb-6 p-4 bg-black/20 rounded-[20px] border border-white/5">
-                <span className="text-slate-300 font-medium">Quantity</span>
+              <div className="flex items-center justify-between mb-6 p-4 bg-[#f8fafc] rounded-[20px] border border-black/5">
+                <span className="text-slate-700 font-medium">Quantity</span>
                 <div className="flex items-center gap-4">
                   <button 
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 text-white"
+                    className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center hover:bg-slate-300 text-slate-800"
                   >-</button>
-                  <span className="font-bold w-4 text-center">{quantity}</span>
+                  <span className="font-bold w-4 text-center text-slate-900">{quantity}</span>
                   <button 
                     onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 text-white"
+                    className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center hover:bg-slate-300 text-slate-800"
                   >+</button>
                 </div>
               </div>
 
               {/* Total Calculation */}
               <div className="flex justify-between items-end mb-6">
-                <span className="text-slate-400">Total Amount</span>
-                <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                <span className="text-slate-600">Total Amount</span>
+                <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
                   {formatCurrency(total)}
                 </span>
               </div>
 
-              <Button variant="primary" className="w-full py-4 text-lg" onClick={handleBookNow}>
+              <Button variant="primary" className="w-full py-4 text-lg text-white" onClick={handleBookNow}>
                 Proceed to Checkout
               </Button>
               <p className="text-center text-xs text-slate-500 mt-4">Secure payment via Razorpay. Taxes applied at checkout.</p>

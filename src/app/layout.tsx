@@ -21,8 +21,8 @@ export default function RootLayout({
         <main className="flex-grow flex flex-col relative w-full pt-[80px]">
           {/* Background Ambient Orbs */}
           <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-            <div className="orb orb-purple w-[600px] h-[600px] top-[-200px] left-[-200px]" />
-            <div className="orb orb-cyan w-[500px] h-[500px] bottom-[-100px] right-[-100px]" style={{ animationDelay: '2s' }} />
+            <div className="orb orb-red w-[600px] h-[600px] top-[-200px] left-[-200px]" />
+            <div className="orb orb-red w-[500px] h-[500px] bottom-[-100px] right-[-100px]" style={{ animationDelay: '2s' }} />
             <div className="orb orb-pink w-[400px] h-[400px] top-[40%] left-[60%]" style={{ animationDelay: '4s', opacity: 0.2 }} />
           </div>
           

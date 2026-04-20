@@ -86,7 +86,7 @@ export default function CustomEventRequest() {
         <div className="flex justify-between items-center mb-8 relative">
           <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/10 -translate-y-1/2 z-0 rounded-full" />
           <div 
-            className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 -translate-y-1/2 z-0 rounded-full transition-all duration-500" 
+            className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-red-500 to-red-400 -translate-y-1/2 z-0 rounded-full transition-all duration-500" 
             style={{ width: `${((step - 1) / 3) * 100}%` }}
           />
           {[1, 2, 3, 4].map(num => (
@@ -94,7 +94,7 @@ export default function CustomEventRequest() {
               key={num} 
               className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm z-10 transition-colors duration-300 ${
                 step >= num 
-                  ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(124,58,237,0.5)]' 
+                  ? 'bg-red-600 text-white shadow-[0_0_15px_rgba(124,58,237,0.5)]' 
                   : 'bg-[#0d0d20] border-2 border-white/10 text-slate-500'
               }`}
             >
@@ -103,7 +103,7 @@ export default function CustomEventRequest() {
           ))}
         </div>
 
-        <GlassCard padding="lg" className="border-t-purple-500/30">
+        <GlassCard padding="lg" className="border-t-red-500/30">
           <form onSubmit={handleSubmit}>
             
             {/* STEP 1: The Basics */}
@@ -121,7 +121,7 @@ export default function CustomEventRequest() {
                         onClick={() => updateForm('eventType', cat.id)}
                         className={`p-4 rounded-2xl flex flex-col items-center justify-center gap-2 transition-all ${
                           formData.eventType === cat.id 
-                            ? 'bg-purple-500/20 border-2 border-purple-500 text-white' 
+                            ? 'bg-red-500/20 border-2 border-red-500 text-white' 
                             : 'bg-white/5 border-2 border-transparent text-slate-400 hover:bg-white/10'
                         }`}
                       >
@@ -166,7 +166,7 @@ export default function CustomEventRequest() {
                         onClick={() => updateForm('guests', g)}
                         className={`px-5 py-3 rounded-xl text-sm font-medium transition-all ${
                           formData.guests === g 
-                            ? 'bg-purple-600 text-white' 
+                            ? 'bg-red-600 text-white' 
                             : 'bg-white/5 text-slate-300 border border-white/10 hover:bg-white/10'
                         }`}
                       >

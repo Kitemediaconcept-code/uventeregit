@@ -47,16 +47,16 @@ export default function BookingsList() {
                   
                   <div className="flex-1 min-w-0 pr-16">
                     <div className="text-xs text-slate-400 font-mono mb-1">REF: {b.bookingRef}</div>
-                    <Link href={`/events/${b.eventId}`} className="text-xl font-bold text-white mb-2 hover:text-purple-400 transition-colors line-clamp-1 inline-flex items-center gap-2">
+                    <Link href={`/events/${b.eventId}`} className="text-xl font-bold text-white mb-2 hover:text-red-400 transition-colors line-clamp-1 inline-flex items-center gap-2">
                        {b.eventTitle} <ExternalLink size={16} />
                     </Link>
                     
                     <div className="grid grid-cols-2 gap-4 mt-4">
                       <div className="flex items-center gap-2 text-sm text-slate-300">
-                        <Calendar size={16} className="text-purple-400" /> {formatDate(b.eventDate)}
+                        <Calendar size={16} className="text-red-400" /> {formatDate(b.eventDate)}
                       </div>
                       <div className="flex items-center gap-2 text-sm text-slate-300">
-                        <MapPin size={16} className="text-cyan-400" /> {b.eventVenue}, {b.eventCity}
+                        <MapPin size={16} className="text-red-400" /> {b.eventVenue}, {b.eventCity}
                       </div>
                     </div>
                   </div>

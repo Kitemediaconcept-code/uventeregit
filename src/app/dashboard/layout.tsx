@@ -34,7 +34,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <GlassPanel className="p-6 sticky top-28 rounded-3xl">
           {/* User Profile Summary */}
           <div className="flex items-center gap-4 mb-8 pb-8 border-b border-white/10">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center text-xl font-bold text-white shadow-lg">
+            <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-red-600 to-red-400 flex items-center justify-center text-xl font-bold text-white shadow-lg">
               {user.name[0]?.toUpperCase() || 'U'}
             </div>
             <div>
@@ -53,11 +53,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   href={link.href}
                   className={`flex items-center gap-3 px-4 py-3 rounded-2xl transition-all ${
                     isActive 
-                      ? 'bg-purple-500/20 text-white border border-purple-500/30 shadow-[0_0_15px_rgba(124,58,237,0.1)]' 
+                      ? 'bg-red-500/20 text-white border border-red-500/30 shadow-[0_0_15px_rgba(124,58,237,0.1)]' 
                       : 'text-slate-400 hover:bg-white/5 hover:text-slate-200 border border-transparent'
                   }`}
                 >
-                  <link.icon size={18} className={isActive ? 'text-purple-400' : ''} />
+                  <link.icon size={18} className={isActive ? 'text-red-400' : ''} />
                   {link.label}
                 </Link>
               );

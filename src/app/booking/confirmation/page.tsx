@@ -34,7 +34,7 @@ function BookingConfirmationContent() {
   return (
     <div className="container py-20 min-h-[85vh] flex items-center justify-center relative">
       <div className="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
-         <div className="orb orb-cyan w-[600px] h-[600px] top-[10%] right-[10%]" />
+         <div className="orb orb-red w-[600px] h-[600px] top-[10%] right-[10%]" />
       </div>
 
       <div className="w-full max-w-2xl">
@@ -69,10 +69,10 @@ function BookingConfirmationContent() {
               <h2 className="text-2xl font-bold text-white mb-2">{booking.eventTitle}</h2>
               <div className="flex flex-col gap-2 text-slate-300">
                 <div className="flex items-center justify-center md:justify-start gap-2">
-                  <Calendar size={16} className="text-purple-400"/> {formatDate(booking.eventDate)}
+                  <Calendar size={16} className="text-red-400"/> {formatDate(booking.eventDate)}
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2">
-                  <MapPin size={16} className="text-cyan-400"/> {booking.eventVenue}, {booking.eventCity}
+                  <MapPin size={16} className="text-red-400"/> {booking.eventVenue}, {booking.eventCity}
                 </div>
               </div>
             </div>

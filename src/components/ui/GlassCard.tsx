@@ -28,7 +28,7 @@ export function GlassCard({
       className={cn(
         'glass-card relative overflow-hidden',
         paddingMap[padding],
-        glowOnHover && 'hover:shadow-[0_20px_60px_rgba(0,0,0,0.4),0_0_30px_rgba(124,58,237,0.2)] hover:border-purple-500/30',
+        glowOnHover && 'hover:shadow-[0_12px_32px_rgba(0,0,0,0.06),0_0_20px_rgba(255,49,49,0.05)] hover:border-red-500/20',
         className
       )}
       {...props}

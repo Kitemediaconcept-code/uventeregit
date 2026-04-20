@@ -32,7 +32,7 @@ export default function Checkout() {
     setCartData(activeCart);
   }, [router]);
 
-  if (!cart || !user) return <div className="min-h-screen relative"><div className="absolute inset-0 flex items-center justify-center"><div className="w-8 h-8 border-4 border-purple-500 border-t-transparent animate-spin rounded-full"></div></div></div>;
+  if (!cart || !user) return <div className="min-h-screen relative"><div className="absolute inset-0 flex items-center justify-center"><div className="w-8 h-8 border-4 border-red-500 border-t-transparent animate-spin rounded-full"></div></div></div>;
 
   const totalAmount = cart.quantity * cart.unitPrice;
   const platformFee = totalAmount * 0.05; // 5% fee
@@ -84,7 +84,7 @@ export default function Checkout() {
         {/* Left: Payment Form (Mocked UI) */}
         <div className="w-full lg:w-[60%] space-y-6">
           <GlassCard padding="md">
-            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2"><User size={20} className="text-purple-400"/> Primary Contact</h3>
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2"><User size={20} className="text-red-400"/> Primary Contact</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm text-slate-400 mb-1">Full Name</label>
@@ -98,11 +98,11 @@ export default function Checkout() {
           </GlassCard>
 
           <GlassCard padding="md">
-            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2"><CreditCard size={20} className="text-cyan-400"/> Payment Method</h3>
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2"><CreditCard size={20} className="text-red-400"/> Payment Method</h3>
             
-            <div className="p-4 rounded-xl border border-purple-500/40 bg-purple-500/10 mb-6 flex items-center gap-3">
-              <ShieldCheck className="text-purple-400 flex-shrink-0" />
-              <p className="text-sm text-purple-200">This is a mock UI. No real payment will be processed. Clicking 'Pay Now' will immediately simulate a successful booking.</p>
+            <div className="p-4 rounded-xl border border-red-500/40 bg-red-500/10 mb-6 flex items-center gap-3">
+              <ShieldCheck className="text-red-400 flex-shrink-0" />
+              <p className="text-sm text-red-200">This is a mock UI. No real payment will be processed. Clicking 'Pay Now' will immediately simulate a successful booking.</p>
             </div>
 
             <div className="space-y-4 opacity-50 pointer-events-none">
@@ -126,7 +126,7 @@ export default function Checkout() {
 
         {/* Right: Order Summary Sidebar */}
         <div className="w-full lg:w-[40%] shrink-0">
-          <GlassCard padding="lg" className="border-t-purple-500/30 border-t-2 sticky top-24">
+          <GlassCard padding="lg" className="border-t-red-500/30 border-t-2 sticky top-24">
             <h3 className="text-xl font-bold text-white mb-6">Order Summary</h3>
 
             {/* Event Info */}
@@ -142,7 +142,7 @@ export default function Checkout() {
             {/* Ticket Info */}
             <div className="mb-6 pb-6 border-b border-white/10">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-slate-300 flex items-center gap-2"><Ticket size={16} className="text-cyan-400"/> {cart.ticketType} Ticket (x{cart.quantity})</span>
+                <span className="text-slate-300 flex items-center gap-2"><Ticket size={16} className="text-red-400"/> {cart.ticketType} Ticket (x{cart.quantity})</span>
                 <span className="text-white font-medium">{formatCurrency(totalAmount)}</span>
               </div>
               <div className="flex justify-between items-center mb-2 text-sm">
@@ -158,7 +158,7 @@ export default function Checkout() {
             {/* Total */}
             <div className="flex justify-between items-end mb-8">
               <span className="text-lg text-white font-medium">Total Payable</span>
-              <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+              <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-400">
                 {formatCurrency(finalTotal)}
               </span>
             </div>
