@@ -86,20 +86,20 @@ export default function Navbar() {
         }}
       >
         <div 
-          className={`w-full transition-all duration-500 rounded-full ${scrolled ? 'glass shadow-2xl bg-white/70' : 'bg-transparent'}`}
+          className={`w-full transition-all duration-500 rounded-full ${scrolled ? 'glass shadow-md bg-white/90' : 'bg-transparent'}`}
           style={{
             padding: scrolled ? '12px 32px' : '24px 0',
-            border: scrolled ? '1px solid rgba(255, 255, 255, 0.4)' : 'none',
+            border: scrolled ? '1px solid rgba(0, 0, 0, 0.05)' : 'none',
           }}
         >
-          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div className="container px-0 md:px-0" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
             {/* ── Logo ── */}
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
               <img 
                 src="/logo.png" 
                 alt="Uventere Logo" 
-                style={{ height: 38, width: 'auto', objectFit: 'contain', filter: 'hue-rotate(220deg)' }} 
+                style={{ height: 38, width: 'auto', objectFit: 'contain' }} 
               />
             </Link>
 
@@ -109,7 +109,7 @@ export default function Navbar() {
                 <Link 
                   key={link.href} 
                   href={link.href}
-                  className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors tracking-wide"
+                  className="text-sm font-semibold text-gray-600 hover:text-[#07715F] transition-colors tracking-wide"
                 >
                   {link.label}
                 </Link>
@@ -117,29 +117,29 @@ export default function Navbar() {
             </nav>
 
             <div className="flex items-center gap-4">
-              <button className="p-2 text-slate-800 hover:text-indigo-600 transition-colors" onClick={() => setSearchOpen(true)}>
+              <button className="p-2 text-gray-800 hover:text-[#07715F] transition-colors" onClick={() => setSearchOpen(true)}>
                 <Search size={20} />
               </button>
               
               {isLoggedIn ? (
                 <div className="flex items-center gap-4">
                   <div className="flex flex-col items-end hidden sm:flex">
-                    <span className="text-xs font-bold text-indigo-600 uppercase tracking-tighter">Coordinator</span>
-                    <span className="text-sm font-medium text-slate-800">{userName}</span>
+                    <span className="text-[10px] font-bold text-[#07715F] uppercase tracking-widest">Coordinator</span>
+                    <span className="text-sm font-bold text-black">{userName}</span>
                   </div>
                   <button 
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="w-10 h-10 rounded-full border border-indigo-100 flex items-center justify-center bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors"
+                    className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-gray-50 text-[#07715F] hover:bg-white hover:shadow-md transition-all"
                   >
                     <User size={18} />
                   </button>
                 </div>
               ) : (
                 <div className="flex items-center gap-3">
-                  <Link href="/auth/login" className="text-sm font-semibold text-slate-800 px-5 py-2 hover:text-indigo-600 transition-colors">
+                  <Link href="/auth/login" className="text-sm font-bold text-black px-5 py-2 hover:text-[#07715F] transition-colors">
                     Login
                   </Link>
-                  <Link href="/custom-event" className="btn-primary !px-5 !py-2.5 !text-sm !font-bold !rounded-full shadow-lg shadow-indigo-200">
+                  <Link href="/custom-event" className="btn-primary !px-6 !py-2.5 !text-sm !font-bold">
                     Book an Event
                   </Link>
                 </div>
@@ -184,13 +184,13 @@ export default function Navbar() {
               href={link.href}
               style={{
                 display: 'block', padding: '18px 20px',
-                fontSize: 28, fontWeight: 700,
+                fontSize: 28, fontWeight: 800,
                 color: pathname === link.href ? 'var(--color-primary)' : 'var(--color-text-primary)',
                 textDecoration: 'none', borderRadius: 20,
                 transition: 'all 0.2s',
                 animationDelay: `${i * 0.05}s`,
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,49,49,0.05)'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(7, 113, 95, 0.05)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
             >
               {link.label}

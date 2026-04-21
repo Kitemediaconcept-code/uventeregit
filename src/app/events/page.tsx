@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import { EVENTS } from '@/lib/data';
 import { EventCard } from '@/components/events/EventCard';
 import { EventFilters, FilterState } from '@/components/events/EventFilters';
-import { GlassCard } from '@/components/ui/GlassCard';
 import { TicketX } from 'lucide-react';
 
 function EventsPageContent() {
@@ -74,11 +73,11 @@ function EventsPageContent() {
   };
 
   return (
-    <div className="container py-8 relative min-h-screen">
+    <div className="container py-8 relative min-h-screen bg-white">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="heading-lg mb-2">Explore <span className="text-gradient">Events</span></h1>
-        <p className="text-slate-400">Discover handpicked premium events happening around you.</p>
+        <h1 className="heading-lg mb-2 text-black">Explore <span className="text-[#07715F]">Events</span></h1>
+        <p className="text-gray-500">Discover handpicked premium events happening around you.</p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8 items-start">
@@ -94,10 +93,10 @@ function EventsPageContent() {
         {/* Results Grid */}
         <div className="flex-1 w-full">
           {/* Active filter pills could go here */}
-          <div className="mb-6 flex justify-between items-center text-sm text-slate-400">
+          <div className="mb-6 flex justify-between items-center text-sm text-gray-500">
             <span>Showing {filteredEvents.length} result{filteredEvents.length !== 1 ? 's' : ''}</span>
             {/* Sort Dropdown placeholder */}
-            <select className="bg-transparent border-none text-slate-300 outline-none cursor-pointer">
+            <select className="bg-transparent border-none text-gray-600 outline-none cursor-pointer font-bold">
               <option value="newest">Newest First</option>
               <option value="price_low">Price: Low to High</option>
               <option value="price_high">Price: High to Low</option>
@@ -111,18 +110,18 @@ function EventsPageContent() {
               ))}
             </div>
           ) : (
-            <GlassCard padding="lg" className="flex flex-col items-center justify-center text-center py-20">
-              <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 text-slate-500">
+            <div className="bg-zinc-50 border border-gray-200 rounded-[32px] p-10 flex flex-col items-center justify-center text-center py-24">
+              <div className="w-24 h-24 bg-white border border-gray-100 rounded-full flex items-center justify-center mb-6 text-gray-400 shadow-sm">
                 <TicketX size={40} />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">No events found</h3>
-              <p className="text-slate-400 max-w-sm mb-6">
+              <h3 className="text-2xl font-bold text-black mb-3">No events found</h3>
+              <p className="text-gray-500 max-w-sm mb-8 leading-relaxed">
                 We couldn't find any events matching your current filters. Try adjusting your search criteria.
               </p>
               <button onClick={handleClearFilters} className="btn-outline">
                 Clear Filters
               </button>
-            </GlassCard>
+            </div>
           )}
         </div>
       </div>
@@ -132,7 +131,7 @@ function EventsPageContent() {
 
 export default function EventsPage() {
   return (
-    <Suspense fallback={<div className="container py-8 text-center text-white">Loading Filters...</div>}>
+    <Suspense fallback={<div className="container py-8 text-center text-black">Loading Filters...</div>}>
       <EventsPageContent />
     </Suspense>
   );

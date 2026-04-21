@@ -2,7 +2,6 @@
 
 import { Search, MapPin, Calendar, Tag, SlidersHorizontal, X } from 'lucide-react';
 import { CATEGORIES } from '@/lib/data';
-import { GlassPanel } from '../ui/GlassCard';
 import { Button } from '../ui/Button';
 
 export interface FilterState {
@@ -28,18 +27,18 @@ export function EventFilters({ filters, setFilters, onClear }: EventFiltersProps
   const hasActiveFilters = Object.values(filters).some(val => val !== '');
 
   return (
-    <GlassPanel className="p-6 sticky top-24 border-r-0 border-l-0 sm:border-r sm:border-l sm:rounded-[32px] sm:border-white/10">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <SlidersHorizontal size={18} className="text-red-400" />
+    <div className="p-8 sticky top-28 border sm:rounded-[32px] border-gray-200 bg-zinc-50 shadow-sm">
+      <div className="flex items-center justify-between mb-8">
+        <h3 className="text-xl font-bold flex items-center gap-2 text-black">
+          <SlidersHorizontal size={20} className="text-[#07715F]" />
           Filters
         </h3>
         {hasActiveFilters && (
           <button 
             onClick={onClear}
-            className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1 transition-colors"
+            className="text-sm font-bold text-gray-500 hover:text-black flex items-center gap-1 transition-colors"
           >
-            <X size={14} /> Clear all
+            <X size={16} /> Clear all
           </button>
         )}
       </div>
@@ -47,13 +46,13 @@ export function EventFilters({ filters, setFilters, onClear }: EventFiltersProps
       <div className="space-y-6">
         {/* Search */}
         <div>
-          <label className="text-sm text-slate-400 mb-2 block">Search Events</label>
+          <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Search Events</label>
           <div className="relative">
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             <input 
               type="text" 
               placeholder="Keyword..." 
-              className="input-glass w-full pl-10 h-11 text-sm bg-black/20"
+              className="w-full pl-12 h-12 rounded-xl text-sm bg-white border border-gray-200 outline-none focus:border-[#51C67E] transition-colors text-black"
               value={filters.search}
               onChange={(e) => handleFilterChange('search', e.target.value)}
             />
@@ -62,44 +61,47 @@ export function EventFilters({ filters, setFilters, onClear }: EventFiltersProps
 
         {/* Category Setup */}
         <div>
-          <label className="text-sm text-slate-400 mb-3 flex items-center gap-2">
-            <Tag size={14} /> Categories
+          <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+            <Tag size={16} /> Categories
           </label>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => handleFilterChange('category', '')}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${
                 filters.category === '' 
-                  ? 'bg-red-600 text-white shadow-lg shadow-red-500/20' 
-                  : 'bg-white/5 text-slate-300 hover:bg-white/10'
+                  ? 'bg-[#07715F] text-white border-[#07715F]' 
+                  : 'bg-white text-gray-500 border-gray-200 hover:bg-gray-50'
               }`}
             >
               All
             </button>
-            {CATEGORIES.map(category => (
-              <button
-                key={category.id}
-                onClick={() => handleFilterChange('category', category.id)}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5`}
-                style={{
-                  background: filters.category === category.id ? category.color : 'rgba(255,255,255,0.05)',
-                  color: filters.category === category.id ? '#000' : 'rgb(203, 213, 225)',
-                  boxShadow: filters.category === category.id ? `0 4px 12px ${category.color}40` : 'none',
-                }}
-              >
-                <span>{category.icon}</span> {category.name}
-              </button>
-            ))}
+            {CATEGORIES.map(category => {
+              const isActive = filters.category === category.id;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => handleFilterChange('category', category.id)}
+                  className={`px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 border`}
+                  style={{
+                    background: isActive ? category.color : '#ffffff',
+                    color: isActive ? '#ffffff' : '#64748b',
+                    borderColor: isActive ? category.color : '#e2e8f0',
+                  }}
+                >
+                  <span className="opacity-80">{category.icon}</span> {category.name}
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* City Filter */}
         <div>
-           <label className="text-sm text-slate-400 mb-2 flex items-center gap-2">
-            <MapPin size={14} /> Location
+           <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 flex items-center gap-2">
+            <MapPin size={16} /> Location
           </label>
           <select 
-            className="select-glass w-full h-11 text-sm bg-black/20"
+            className="w-full h-12 rounded-xl text-sm bg-white border border-gray-200 outline-none focus:border-[#51C67E] px-4 cursor-pointer text-black"
             value={filters.city}
             onChange={(e) => handleFilterChange('city', e.target.value)}
           >
@@ -116,13 +118,13 @@ export function EventFilters({ filters, setFilters, onClear }: EventFiltersProps
 
         {/* Date Filter */}
         <div>
-          <label className="text-sm text-slate-400 mb-2 flex items-center gap-2">
-            <Calendar size={14} /> Date
+          <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 flex items-center gap-2">
+            <Calendar size={16} /> Date
           </label>
           <div className="relative">
             <input 
               type="date" 
-              className="input-glass w-full h-11 text-sm bg-black/20 [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert pr-4"
+              className="w-full h-12 rounded-xl text-sm bg-white border border-gray-200 outline-none focus:border-[#51C67E] px-4 cursor-pointer text-black"
               value={filters.date}
               onChange={(e) => handleFilterChange('date', e.target.value)}
             />
@@ -131,9 +133,9 @@ export function EventFilters({ filters, setFilters, onClear }: EventFiltersProps
 
         {/* Price Range Filter */}
         <div>
-          <label className="text-sm text-slate-400 mb-2 block">Max Price</label>
+          <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Max Price</label>
           <select 
-            className="select-glass w-full h-11 text-sm bg-black/20"
+            className="w-full h-12 rounded-xl text-sm bg-white border border-gray-200 outline-none focus:border-[#51C67E] px-4 cursor-pointer text-black"
             value={filters.priceRange}
             onChange={(e) => handleFilterChange('priceRange', e.target.value)}
           >
@@ -146,6 +148,6 @@ export function EventFilters({ filters, setFilters, onClear }: EventFiltersProps
         </div>
 
       </div>
-    </GlassPanel>
+    </div>
   );
 }
